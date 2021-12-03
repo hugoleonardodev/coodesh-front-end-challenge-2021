@@ -7,10 +7,13 @@ import { Provider, RootStateOrAny } from 'react-redux'
 // import { history } from 'store/index'
 import { applyMiddleware, createStore, Reducer, Store } from 'redux'
 import thunkMiddleware from 'redux-thunk'
+import { ThemeProvider } from 'styled-components'
 
+import goodContrastTheme from '@common/themes/goodContrastTheme'
 import rootReducer from '@store/reducers/_rootReducer'
+
 // import { Router } from 'react-router'
-import { render } from '@testing-library/react'
+import { render } from './TestRenderer'
 
 interface ICustomRouteConfig {
     path: string
@@ -32,7 +35,7 @@ export const getMockedStore = (
     return createStore(customReducer, initialState, applyMiddleware(thunkMiddleware))
 }
 
-export const RenderWithRouterAndStore = (
+export const renderWithRouterAndStore = (
     component: React.ReactElement,
     routeConfigs: ICustomRouteConfig = defaultRouteConfig,
     initialState?: RootStateOrAny,
@@ -45,7 +48,9 @@ export const RenderWithRouterAndStore = (
     return {
         ...render(
             <Provider store={store}>
-                <ConnectedRouter history={history}>{component}</ConnectedRouter>
+                <ThemeProvider theme={goodContrastTheme}>
+                    <ConnectedRouter history={history}>{component}</ConnectedRouter>
+                </ThemeProvider>
             </Provider>,
         ),
         store,

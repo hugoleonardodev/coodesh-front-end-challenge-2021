@@ -40,30 +40,28 @@ const HomeMain: React.FC = () => {
         [dispatch, filters],
     )
     return (
-        <div>
-            <HomeMainContainer>
-                <Header />
-                <SearchFilter />
-                <MobileSubmitSearchFilter>
-                    {filters.length > 0 ? (
-                        filters.map(({ query, filter }, index) => (
-                            <Filter
-                                query={query}
-                                filter={filter}
-                                index={index}
-                                key={`filter-${index}-${filter}`}
-                                removeFilter={handleRemoveFilter}
-                            />
-                        ))
-                    ) : (
-                        <div>No filters applied</div>
-                    )}
-                </MobileSubmitSearchFilter>
-                <TablePatients />
-                <InfinityScroll isBottomVisible={isVisible} />
-            </HomeMainContainer>
+        <HomeMainContainer>
+            <Header />
+            <SearchFilter />
+            <MobileSubmitSearchFilter>
+                {filters.length > 0 ? (
+                    filters.map(({ query, filter }, index) => (
+                        <Filter
+                            query={query}
+                            filter={filter}
+                            index={index}
+                            key={`filter-${index}-${filter}`}
+                            removeFilter={handleRemoveFilter}
+                        />
+                    ))
+                ) : (
+                    <div>No filters applied</div>
+                )}
+            </MobileSubmitSearchFilter>
+            <TablePatients />
+            <InfinityScroll isBottomVisible={isVisible} />
             <div ref={infinityScrollBottomReference} />
-        </div>
+        </HomeMainContainer>
     )
 }
 

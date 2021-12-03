@@ -14,7 +14,7 @@ const NotFound: React.FC<TNotFoundProperties> = ({ patient }) => {
         info: { page },
     } = useSelector((state: IRootStateWithReducers) => state.patients)
     return (
-        <div>
+        <>
             {!patient ? (
                 <img src={NotFoundImage} alt="" />
             ) : (
@@ -25,7 +25,7 @@ const NotFound: React.FC<TNotFoundProperties> = ({ patient }) => {
                     <p>You may take a look on the next pages.</p>
                 </>
             )}
-        </div>
+        </>
     )
 }
 

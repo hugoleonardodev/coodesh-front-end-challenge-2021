@@ -28,4 +28,4 @@ const Avatar: React.FC<TAvatarProperties> = ({ avatarUrl, avatarSize }) => {
     )
 }
 
-export default React.memo(Avatar)
+export default Avatar

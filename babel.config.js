@@ -42,6 +42,7 @@ module.exports = {
                     '^__tests__/(.+)': './src/__tests__/\\1',
                     '^@common/(.+)': './src/common/\\1',
                     '^@common/assets/(.+)': './src/common/assets/\\1',
+                    '^@common/bootstrap/(.+)': './src/common/bootstrap/\\1',
                     '^@common/hooks/(.+)': './src/common/hooks/\\1',
                     '^@common/types/(.+)': './src/common/types/\\1',
                     '^@common/validators/(.+)': './src/common/validators/\\1',

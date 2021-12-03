@@ -39,6 +39,7 @@
       "__tests__/*": ["./src/__tests__/*"],
       "@common/*": ["./src/common/*"],
       "@common/assets/*": ["./src/common/assets/*"],
+      "@common/bootstrap/*": ["./src/common/bootstrap/*"],
       "@common/hooks/*": ["./src/common/hooks/*"],
       "@common/types/*": ["src/common/types/*"],
       "@common/validators/*": ["src/common/validators/*"],

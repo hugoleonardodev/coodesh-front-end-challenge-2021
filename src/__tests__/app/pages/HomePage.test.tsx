@@ -25,7 +25,7 @@ const userResponse = rest.get('https://randomuser.me/api/', (_request, response,
     // console.log(seed)
     // const results = query.get('results')
     // console.log(results)
-    console.log('userResponse')
+    // console.log('userResponse')
     return response(context.json(firstTenPatients))
 })
 // // declare which API requests to mock
@@ -39,7 +39,8 @@ const server = setupServer(
         // const originalResponse = await context.fetch('https://randomuser.me/api/')
         // const originalResponseData = await originalResponse.json()
         // console.log('originalResponseData', originalResponseData)
-        return response(context.status(200))
+        return response(context.json(firstTenPatients))
+        // return response(context.status(200))
         // return response(originalResponseData)
     }),
     // ...handlers,

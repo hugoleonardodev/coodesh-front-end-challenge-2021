@@ -684,7 +684,7 @@ describe('HomePage with a mocked store.tsx', () => {
             { customConfigsReducer: configsReducer, customPatientsReducer: patientsReducer },
             initialStates,
         )
-        console.log(memoryHistory)
+
         const firstPatient = screen.getByText('Petersen, Marie')
         expect(firstPatient).toBeInTheDocument()
 

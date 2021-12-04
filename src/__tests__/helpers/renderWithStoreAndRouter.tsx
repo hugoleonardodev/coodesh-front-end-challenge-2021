@@ -67,16 +67,17 @@ export const renderWithRouterAndStore = (
     const store = getMockedStore(initialState, customReducers)
     const history = routeConfigs.history || createMemoryHistory({ initialEntries: [route] })
 
-    console.log(history)
     return {
         ...render(
-            <Provider store={store}>
-                <ThemeProvider theme={goodContrastTheme}>
-                    <ConnectedRouter history={history}>
-                        <Route path={routeConfigs.path}>{component}</Route>
-                    </ConnectedRouter>
-                </ThemeProvider>
-            </Provider>,
+            <React.StrictMode>
+                <Provider store={store}>
+                    <ThemeProvider theme={goodContrastTheme}>
+                        <ConnectedRouter history={history}>
+                            <Route path={routeConfigs.path}>{component}</Route>
+                        </ConnectedRouter>
+                    </ThemeProvider>
+                </Provider>
+            </React.StrictMode>,
         ),
         store,
         history,

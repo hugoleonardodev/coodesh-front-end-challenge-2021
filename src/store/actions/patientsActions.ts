@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux'
 
 import { getInitialPatientsList, getPatientsByPage } from '@services/api'
-import getSearchQuerySumit from '@services/api/getSearchQuerySubmit'
+import { getSearchQuerySumit } from '@services/api'
 import { ISetIsLoading, IUpdateApiQuery } from '@store/constants/configsTypes'
 import {
     IListPatientsAction,

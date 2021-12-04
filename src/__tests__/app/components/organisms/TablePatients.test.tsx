@@ -6,7 +6,7 @@ import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 import React from 'react'
 
-import HomeMain from '@layouts/HomeMain'
+import HomePage from '@pages/HomePage'
 import { ConfigsDataActions, TUserConfigs, TConfigsActionsCreators } from '@store/constants/configsTypes'
 import { TPatientsActionsCreators } from '@store/constants/patientsTypes'
 import { PatientsDataActions } from '@store/constants/patientsTypes'
@@ -24,10 +24,10 @@ export type TPatientsInitialState = {
 } & PatientsAPI.IPatientRootObject
 
 const mockedPatients: TPatientsInitialState = {
-    search: 'brazil',
+    search: '',
     filters: [
-        { query: 'brazil', filter: 'nation' },
-        { query: 'Petersen', filter: 'name' },
+        // { query: 'brazil', filter: 'nation' },
+        // { query: 'Petersen', filter: 'name' },
     ],
     results: [
         {
@@ -702,12 +702,12 @@ afterEach(() => {
 
 afterAll(() => server.close())
 
-const TWO_FILTERS = 2
+// const TWO_FILTERS = 2
 
-describe('HomeMain mocked store with two filters', () => {
-    it('should render two filters and be able to click first one', async () => {
+describe('Renders HomePage to test TablePatients behavior', () => {
+    it('should sort the patient list on ascendent order', async () => {
         renderWithRouterAndStore(
-            <HomeMain />,
+            <HomePage />,
             { path: '/', history: memoryHistory },
             { customConfigsReducer: configsReducer, customPatientsReducer: patientsReducer },
             initialStates,
@@ -716,19 +716,18 @@ describe('HomeMain mocked store with two filters', () => {
         const firstPatient = screen.getByText('Petersen, Marie')
         expect(firstPatient).toBeInTheDocument()
 
-        const filtersButton = screen.getAllByRole('button', {
-            name: /nation\/brazil/i,
-        })
+        const sortAscendentButton = screen.getByTestId('table-sort-down')
+        expect(sortAscendentButton).toBeInTheDocument()
 
-        expect(filtersButton.length).toBe(TWO_FILTERS)
-        expect(filtersButton[1]).toBeInTheDocument()
+        userEvent.click(sortAscendentButton)
 
-        userEvent.click(filtersButton[1])
+        const sortDescendentButton = await screen.findByTestId('table-sort-up')
+        expect(sortDescendentButton).toBeInTheDocument()
     })
 
-    it('should render two filters and be able to click last one', async () => {
+    it('should sort the patient list on descendent order', async () => {
         renderWithRouterAndStore(
-            <HomeMain />,
+            <HomePage />,
             { path: '/', history: memoryHistory },
             { customConfigsReducer: configsReducer, customPatientsReducer: patientsReducer },
             initialStates,
@@ -737,13 +736,50 @@ describe('HomeMain mocked store with two filters', () => {
         const firstPatient = screen.getByText('Petersen, Marie')
         expect(firstPatient).toBeInTheDocument()
 
-        const filtersButton = screen.getAllByRole('button', {
-            name: /name\/petersen/i,
-        })
+        const sortAscendentButton = screen.getByTestId('table-sort-down')
+        expect(sortAscendentButton).toBeInTheDocument()
 
-        expect(filtersButton.length).toBe(TWO_FILTERS)
-        expect(filtersButton[1]).toBeInTheDocument()
+        userEvent.click(sortAscendentButton)
 
-        userEvent.click(filtersButton[1])
+        const sortDescendentButton = await screen.findByTestId('table-sort-up')
+        expect(sortDescendentButton).toBeInTheDocument()
+
+        userEvent.click(sortDescendentButton)
+    })
+
+    it('should be able to click on patient gender dropdown and select a gender', async () => {
+        renderWithRouterAndStore(
+            <HomePage />,
+            { path: '/', history: memoryHistory },
+            { customConfigsReducer: configsReducer, customPatientsReducer: patientsReducer },
+            initialStates,
+        )
+
+        const genderDropdownToggle = screen.getByTestId('gender-dropdown-toggle')
+        expect(genderDropdownToggle).toBeInTheDocument()
+
+        userEvent.click(genderDropdownToggle)
+
+        const femaleGender = await screen.findByTestId('female-gender')
+        expect(femaleGender).toBeInTheDocument()
+
+        userEvent.click(femaleGender)
+    })
+
+    it('should be able to click on share patient button', async () => {
+        renderWithRouterAndStore(
+            <HomePage />,
+            { path: '/', history: memoryHistory },
+            { customConfigsReducer: configsReducer, customPatientsReducer: patientsReducer },
+            initialStates,
+        )
+
+        const firstPatient = screen.getByText('Petersen, Marie')
+        expect(firstPatient).toBeInTheDocument()
+
+        const sharePatientButton = screen.getByTestId('share-patient-1')
+        expect(sharePatientButton).toBeInTheDocument()
+
+        userEvent.click(sharePatientButton)
     })
 })

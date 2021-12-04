@@ -10,7 +10,7 @@ import SharedPatientPage from '@pages/SharePatientPage'
 import { ConfigsDataActions, TUserConfigs, TConfigsActionsCreators } from '@store/constants/configsTypes'
 import { TPatientsActionsCreators } from '@store/constants/patientsTypes'
 import { PatientsDataActions } from '@store/constants/patientsTypes'
-import { screen } from '@testing-library/react'
+import { screen, cleanup } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 export interface IFilter {
@@ -676,6 +676,11 @@ const configsReducer = (state: TUserConfigs = mockedConfigs, action?: TConfigsAc
 
 const initialStates = [mockedPatients, mockedConfigs]
 
+afterEach(() => {
+    jest.resetModules()
+    jest.clearAllMocks()
+    cleanup()
+})
 describe('SharedPatientPage.tsx', () => {
     it('should render', async () => {
         // render(<SharedPatientPage />, {})

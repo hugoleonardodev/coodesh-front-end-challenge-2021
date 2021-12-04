@@ -9,7 +9,7 @@ import HomePage from '@pages/HomePage'
 import { ConfigsDataActions, TUserConfigs, TConfigsActionsCreators } from '@store/constants/configsTypes'
 import { TPatientsActionsCreators } from '@store/constants/patientsTypes'
 import { PatientsDataActions } from '@store/constants/patientsTypes'
-import { screen } from '@testing-library/react'
+import { screen, cleanup } from '@testing-library/react'
 
 export interface IFilter {
     query: string
@@ -673,7 +673,11 @@ const configsReducer = (state: TUserConfigs = mockedConfigs, action?: TConfigsAc
 }
 
 const initialStates = [mockedPatients, mockedConfigs]
-
+afterEach(() => {
+    jest.resetModules()
+    jest.clearAllMocks()
+    cleanup()
+})
 describe('HomePage with a mocked store.tsx', () => {
     it('should render', async () => {
         // render(<HomePage />, {})

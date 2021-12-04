@@ -62,26 +62,34 @@ const TablePatients: React.FC = () => {
                     <NameTh>
                         <span>Name</span>{' '}
                         {isAscendent ? (
-                            <SortDownIcon onClick={handleSortName} />
+                            <SortDownIcon onClick={handleSortName} data-testid="table-sort-down" />
                         ) : (
-                            <SortUpIcon onClick={handleSortName} />
+                            <SortUpIcon onClick={handleSortName} data-testid="table-sort-up" />
                         )}
                     </NameTh>
                     <th>
                         <UncontrolledDropdown>
-                            <DropdownToggle caret nav>
+                            <DropdownToggle caret nav data-testid="gender-dropdown-toggle">
                                 Gender
                             </DropdownToggle>
                             <DropdownMenu end>
-                                <DropdownItem onClick={handleGenderFilter} defaultValue="female">
+                                <DropdownItem
+                                    onClick={handleGenderFilter}
+                                    defaultValue="female"
+                                    data-testid="female-gender"
+                                >
                                     Female
                                 </DropdownItem>
                                 <DropdownItem divider />
-                                <DropdownItem onClick={handleGenderFilter} defaultValue="male">
+                                <DropdownItem
+                                    onClick={handleGenderFilter}
+                                    defaultValue="male"
+                                    data-testid="male-gender"
+                                >
                                     Male
                                 </DropdownItem>
                                 <DropdownItem divider />
-                                <DropdownItem onClick={handleGenderFilter} defaultValue="">
+                                <DropdownItem onClick={handleGenderFilter} defaultValue="" data-testid="any-gender">
                                     Any
                                 </DropdownItem>
                             </DropdownMenu>
@@ -115,7 +123,12 @@ const TablePatients: React.FC = () => {
                                   </ModalPatient>
                               </td>
                               <td>
-                                  <Button value={patient.login.uuid} onClick={hanldeSharePatient} color="success">
+                                  <Button
+                                      value={patient.login.uuid}
+                                      onClick={hanldeSharePatient}
+                                      color="success"
+                                      data-testid={`share-patient-${index + 1}`}
+                                  >
                                       <ShareIcon /> <span>Share</span>
                                   </Button>
                               </td>

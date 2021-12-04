@@ -14,7 +14,7 @@ import React from 'react'
 // import { useDispatch } from 'react-redux'
 
 import HomePage from '@pages/HomePage'
-import { screen } from '@testing-library/react'
+import { screen, cleanup } from '@testing-library/react'
 
 import { render } from '../../helpers/testUtils'
 
@@ -51,7 +51,12 @@ const server = setupServer(
 beforeAll(() => server.listen())
 // reset any request handlers that are declared as a part of our tests
 // (i.e. for testing one-time error scenarios)
-afterEach(() => server.resetHandlers())
+afterEach(() => {
+    server.resetHandlers()
+    jest.resetModules()
+    jest.clearAllMocks()
+    cleanup()
+})
 // clean up once the tests are done
 afterAll(() => server.close())
 

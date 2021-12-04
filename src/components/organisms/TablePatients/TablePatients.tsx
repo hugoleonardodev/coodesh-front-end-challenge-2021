@@ -94,7 +94,7 @@ const TablePatients: React.FC = () => {
             <tbody>
                 {isLoading || results.length === 0
                     ? skeletonsLines.map((skeleton, index) => (
-                          <tr key={`patient-lines-${index}-#${skeleton}`}>
+                          <tr key={`patient-lines-${index}-#${skeleton}`} data-testid="loading">
                               <th scope="row">{index + 1}</th>
                               {skeletonsRows.map((skeleton, index) => (
                                   <td key={`patient-row-${index}-#${skeleton}`}>
@@ -104,7 +104,7 @@ const TablePatients: React.FC = () => {
                           </tr>
                       ))
                     : results.map((patient, index) => (
-                          <TableRow key={`patient-${index}-id-${patient.login.uuid}`}>
+                          <TableRow key={`patient-${index}-id-${patient.login.uuid}`} data-testid="patient">
                               <th scope="row">{index + 1}</th>
                               <td>{`${patient.name.last}, ${patient.name.first}`}</td>
                               <td>{patient.gender}</td>

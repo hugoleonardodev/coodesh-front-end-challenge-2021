@@ -25,7 +25,7 @@ declare namespace PatientsAPI {
         city: string
         state: string
         country: string
-        postcode: string
+        postcode: string | number
         coordinates: IPatientCoordinates
         timezone: IPatientTimezone
     }
@@ -41,12 +41,12 @@ declare namespace PatientsAPI {
     }
 
     export interface IPatientDayOfBirth {
-        date: Date
+        date: Date | string
         age: number
     }
 
     export interface IPatientRegistered {
-        date: Date
+        date: Date | string
         age: number
     }
 

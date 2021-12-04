@@ -30,7 +30,7 @@
     "publish": "sudo docker build --tag react .",
     "publish:dev": "sudo docker build --tag react . && sudo docker run --publish 5010:5010 react",
     "start": "cross-env NODE_ENV=development webpack s --mode development",
-    "test": "jest --runInBand",
+    "test": "jest --runInBand --watchAll",
     "test:coverage": "jest --coverage"
   },
   "husky": {
@@ -123,6 +123,7 @@
     "jest": "^27.2.5",
     "jest-svg-transformer": "^1.0.0",
     "mini-css-extract-plugin": "^2.4.2",
+    "msw": "^0.35.0",
     "postcss-loader": "^6.1.1",
     "postcss-nested": "^5.0.6",
     "prettier": "^2.4.1",

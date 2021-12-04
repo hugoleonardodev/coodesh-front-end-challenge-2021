@@ -1,4 +1,4 @@
-export interface IUserConfigs {
+export type TUserConfigs = {
     user: string
     email: string
     avatar: string
@@ -13,7 +13,6 @@ export interface IUserConfigs {
  * @SET_IS_LOADING set isLoadig `true` when is needed and and vice-versa.
  * @UPDATE_API_QUERY set isLoadig `true` when is needed and and vice-versa.
  */
-
 export enum ConfigsDataActions {
     SWITCH_THEME = 'SWITCH_THEME',
     SET_IS_LOADING = 'SET_IS_LOADING',

@@ -106,7 +106,7 @@ const TablePatients: React.FC = () => {
                               <th scope="row">{index + 1}</th>
                               {skeletonsRows.map((skeleton, index) => (
                                   <td key={`patient-row-${index}-#${skeleton}`}>
-                                      <Skeleton />
+                                      <Skeleton isLarge={index === 0} />
                                   </td>
                               ))}
                           </tr>

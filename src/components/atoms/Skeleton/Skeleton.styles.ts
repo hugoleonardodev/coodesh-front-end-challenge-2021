@@ -19,7 +19,7 @@ export const SigleLineSkeleton = styled.span<TSigleLineSkeletonProperties>`
     position: relative;
     overflow: hidden;
     background-color: #dddbdd;
-    width: ${properties => (properties.isLarge ? '108px' : '60px')};
+    width: ${properties => (properties.isLarge ? '92px' : '60px')};
 
     &::after {
         position: absolute;

@@ -26,6 +26,7 @@
     "lint": "npx stylelint **/*.styles.ts && eslint --ext .tsx,.ts src",
     "lint:fix": "eslint --ext .tsx,.ts --fix src",
     "lint:css": "npx stylelint **/*.styles.ts",
+    "nvm:use": "nvm use",
     "prepare": "husky install",
     "publish": "sudo docker build --tag react .",
     "publish:dev": "sudo docker build --tag react . && sudo docker run --publish 5010:5010 react",

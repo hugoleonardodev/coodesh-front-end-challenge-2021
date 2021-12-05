@@ -9,7 +9,7 @@ import InfinityScroll from '@components/organisms/InfinityScroll'
 import TablePatients from '@components/organisms/TablePatients'
 import { getSearchQuerySubmitThunk, removeSearchFilter } from '@store/actions/patientsActions'
 import { IRootStateWithReducers } from '@store/constants/_rootReducerTypes'
-import { IFilter } from '@store/reducers/patientsReducer'
+import { IFilter } from '@store/constants/patientsTypes'
 
 import { HomeMainContainer, MobileSubmitSearchFilter } from './HomeMain.styles'
 

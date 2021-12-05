@@ -1,4 +1,14 @@
-import { TPatientsInitialState } from '@store/reducers/patientsReducer'
+// import { TPatientsInitialState } from '@store/reducers/patientsReducer'
+
+export interface IFilter {
+    query: string
+    filter: '' | 'name' | 'nation'
+}
+
+export type TPatientsInitialState = {
+    search: string
+    filters: IFilter[]
+} & PatientsAPI.IPatientRootObject
 
 /**
  * Patients `redux` store's data actions.

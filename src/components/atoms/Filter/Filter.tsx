@@ -1,7 +1,7 @@
 import React from 'react'
 import { UncontrolledTooltip } from 'reactstrap'
 
-import { IFilter } from '@store/reducers/patientsReducer'
+import { IFilter } from '@store/constants/patientsTypes'
 
 import { FilterPills } from './Filter.styles'
 

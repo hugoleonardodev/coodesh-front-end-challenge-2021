@@ -6,7 +6,7 @@ import { ReactComponent as SearchIcon } from '@common/assets/search.svg'
 import Filter from '@components/atoms/Filter'
 import { getSearchQuerySubmitThunk, removeSearchFilter } from '@store/actions/patientsActions'
 import { IRootStateWithReducers } from '@store/constants/_rootReducerTypes'
-import { IFilter } from '@store/reducers/patientsReducer'
+import { IFilter } from '@store/constants/patientsTypes'
 
 import { SearchFilterForm, SubmitSearchButton, SubmitSearchFiltersContainer } from './SearchFilter.styles'
 

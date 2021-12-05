@@ -1,4 +1,4 @@
-import { IFilter, TPatientsInitialState } from '@store/reducers/patientsReducer'
+import { IFilter, TPatientsInitialState } from '@store/constants/patientsTypes'
 
 import { filterByName } from './filterByName'
 import { filterByNation } from './filterByNation'

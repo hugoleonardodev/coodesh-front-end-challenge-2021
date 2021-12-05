@@ -1,5 +1,5 @@
 import { getCountryCodeByName } from '@common/functions'
-import { IFilter, TPatientsInitialState } from '@store/reducers/patientsReducer'
+import { IFilter, TPatientsInitialState } from '@store/constants/patientsTypes'
 
 export const filterByNation = (
     data: PatientsAPI.IPatientRootObject,

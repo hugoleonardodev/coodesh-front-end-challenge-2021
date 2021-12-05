@@ -27,10 +27,7 @@ export type TPatientsInitialState = {
 
 const mockedPatients: TPatientsInitialState = {
     search: '',
-    filters: [
-        // { query: 'brazil', filter: 'nation' },
-        // { query: 'madonna', filter: 'name' },
-    ],
+    filters: [],
     results: [
         {
             gender: 'female',

@@ -1,4 +1,4 @@
-import { IFilter, TPatientsInitialState } from '@store/reducers/patientsReducer'
+import { IFilter, TPatientsInitialState } from '@store/constants/patientsTypes'
 
 export const filterByName = (
     data: PatientsAPI.IPatientRootObject,

@@ -1,17 +1,5 @@
-import { TPatientsActionsCreators } from '@store/constants/patientsTypes'
+import { TPatientsActionsCreators, TPatientsInitialState } from '@store/constants/patientsTypes'
 import { PatientsDataActions } from '@store/constants/patientsTypes'
-// import { Reducer } from 'react'
-// import { Action } from 'redux'
-
-export interface IFilter {
-    query: string
-    filter: '' | 'name' | 'nation'
-}
-
-export type TPatientsInitialState = {
-    search: string
-    filters: IFilter[]
-} & PatientsAPI.IPatientRootObject
 
 const initialState: TPatientsInitialState = {
     search: '',

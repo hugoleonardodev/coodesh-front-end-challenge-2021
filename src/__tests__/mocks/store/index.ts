@@ -4,8 +4,7 @@ import { createStore, applyMiddleware, Store } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 
 import { TConfigsActionsCreators, TUserConfigs } from '@store/constants/configsTypes'
-import { TPatientsActionsCreators } from '@store/constants/patientsTypes'
-import { TPatientsInitialState } from '@store/reducers/patientsReducer'
+import { TPatientsActionsCreators, TPatientsInitialState } from '@store/constants/patientsTypes'
 
 import customRootReducer from './customRootReducer'
 

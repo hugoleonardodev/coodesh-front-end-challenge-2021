@@ -28,25 +28,39 @@ export const switchTheme = (shouldThemeSwitch: boolean): ISwitchThemeAction => (
  * @default true
  * @returns return an action creator with `type` and `payload`
  * @example
- * export const getPatientsByPageThunk =
- *  (page = 1) =>
- *      async (dispatch: Dispatch<IPaginationLoadPatientsAction | ISetIsLoading>): Promise<void> => {
- *          dispatch(setIsLoading(true))
+ * import { dispatch } from 'redux'
+ * import { useSelector } from 'react-redux'
  *
- *          const moreFiftyPatientsData = await getPatientsByPage(page)
+ * const { isLoading } = useSelector((state: State) => state)
  *
- *          if (moreFiftyPatientsData.status === __200_OK__) {
- *              dispatch(paginationLoadPatients(moreFiftyPatientsData.data))
- *          }
- *
- *          dispatch(setIsLoading(false))
- *      }
+ * setIsLoading(!isLoading) =>
+ * ({
+ *   type: ConfigsDataActions.SET_IS_LOADING,
+ *   payload: !isLoading,
+ * })
  */
 export const setIsLoading = (isLoading: boolean): ISetIsLoading => ({
     type: ConfigsDataActions.SET_IS_LOADING,
     payload: isLoading,
 })
 
+/**
+ * An action to trigger loading when waiting for API responses.
+ * @param apiQuery
+ * @default ''
+ * @returns return an action creator with `type` and `payload`
+ * @example
+ * import { dispatch } from 'redux'
+ * import { useSelector } from 'react-redux'
+ *
+ * const { apiQuery } = useSelector((state: State) => state)
+ *
+ * updateApiQuery('https://randomuser.me/api/?seed=PharmaInc&results=50') =>
+ * ({
+ *   type: ConfigsDataActions.UPDATE_API_QUERY,
+ *   payload: 'https://randomuser.me/api/?seed=PharmaInc&results=50',
+ * })
+ */
 export const updateApiQuery = (apiQuery: string): IUpdateApiQuery => ({
     type: ConfigsDataActions.UPDATE_API_QUERY,
     payload: apiQuery,

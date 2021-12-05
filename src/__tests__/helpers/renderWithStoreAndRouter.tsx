@@ -12,9 +12,8 @@ import customStore from '__tests__/mocks/store'
 
 import goodContrastTheme from '@common/themes/goodContrastTheme'
 import { TConfigsActionsCreators, TUserConfigs } from '@store/constants/configsTypes'
-import { TPatientsActionsCreators } from '@store/constants/patientsTypes'
+import { TPatientsActionsCreators, TPatientsInitialState } from '@store/constants/patientsTypes'
 import store from '@store/index'
-import { TPatientsInitialState } from '@store/reducers/patientsReducer'
 
 import { render } from './testUtils'
 

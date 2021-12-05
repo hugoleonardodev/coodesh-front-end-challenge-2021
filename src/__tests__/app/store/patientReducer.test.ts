@@ -2,8 +2,8 @@ import { Action, createStore, Reducer } from 'redux'
 
 import firstTenPatients from '__tests__/mocks/json/firstTenPatients'
 
-import { PatientsDataActions } from '@store/constants/patientsTypes'
-import patientsReducer, { TPatientsInitialState } from '@store/reducers/patientsReducer'
+import { PatientsDataActions, TPatientsInitialState } from '@store/constants/patientsTypes'
+import patientsReducer from '@store/reducers/patientsReducer'
 
 const initialState: TPatientsInitialState = {
     search: '',

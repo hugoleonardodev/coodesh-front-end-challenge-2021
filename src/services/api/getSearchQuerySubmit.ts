@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
 
 import { getCountryCodeByName } from '@common/functions'
-import { IFilter } from '@store/reducers/patientsReducer'
+import { IFilter } from '@store/constants/patientsTypes'
 
 const generateQueryFilter = (filters: IFilter[]) => {
     const hasNationFilter = filters.find(({ filter }) => filter === 'nation')

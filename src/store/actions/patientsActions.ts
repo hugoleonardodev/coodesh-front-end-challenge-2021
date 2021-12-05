@@ -10,8 +10,8 @@ import {
     ISearchQuerySubmitAction,
     PatientsDataActions,
 } from '@store/constants/patientsTypes'
+import { IFilter, TPatientsInitialState } from '@store/constants/patientsTypes'
 import { filterByQuery } from '@store/helpers/filterByQuery'
-import { IFilter, TPatientsInitialState } from '@store/reducers/patientsReducer'
 
 import { setIsLoading, updateApiQuery } from './configsActions'
 
@@ -30,7 +30,7 @@ export const initialListPatients = (patientsData: PatientsAPI.IPatientRootObject
 /**
  * Async thunk to get the first page of patients from random user API.
  * @param none
- * @returns returns an async `redux-thunk` function able to await for data and `dispatch` the result
+ * @returns `<Promise>` an async `redux-thunk` function able to await for data and `dispatch` the result
  * @example
  * getInitialPatientsListThunk() =>
  *   async (dispatch: Dispatch<IListPatientsAction>): Promise<void> => {
@@ -75,7 +75,7 @@ export const paginationLoadPatients = (
  * Async thunk to get a page of patients from random user API given the page number.
  * @param page
  * @default 1
- * @returns an object with the action `type` to `dispatch` redux store's patients pagination
+ * @returns `<Promise>` an async `redux-thunk` function able to await for data and `dispatch` the result
  * @example
  * getInitialPatientsListThunk(2) =>
  *   async (dispatch: Dispatch<IPaginationLoadPatientsAction>): Promise<void> => {
@@ -116,6 +116,38 @@ export const searchQuerySubmit = (patientsData: TPatientsInitialState): ISearchQ
     payload: patientsData,
 })
 
+/**
+ * Async thunk to handle most of the async requests and `actions` on patients `redux` store's.
+ * @param query
+ * @default ''
+ * @param queryFilter
+ * @default []
+ * @param filters
+ * @default []
+ * @param page
+ * @default 1
+ * @returns `<Promise>` an async `redux-thunk` function able to await for data and `dispatch` the result
+ * @example
+ * getInitialPatientsListThunk('madonna', [{ query: 'madonna', filter: 'name' }], [{ query: 'united states', filter: 'nation'} ], 2) =>
+        async (dispatch: Dispatch<ISearchQuerySubmitAction | ISetIsLoading | IUpdateApiQuery>): Promise<void> => {
+            dispatch(setIsLoading(true))
+
+            const filteredPatients = await getSearchQuerySumit([{ query: 'madonna', filter: 'name' }], 2)
+
+            dispatch(updateApiQuery(filteredPatients.request.responseURL))
+
+            if (filteredPatients.status === __200_OK__) {
+                dispatch(searchQuerySubmit(filterByQuery(
+                    filteredPatients.data,
+                    'madonna',
+                    [{ query: 'madonna', filter: 'name' }],
+                    [{ query: 'united states', filter: 'nation'}]
+                )))
+            }
+
+            dispatch(setIsLoading(false))
+        }
+ */
 export const getSearchQuerySubmitThunk =
     (query: string, queryFilters: IFilter[], filters: IFilter[], page = 1) =>
     async (dispatch: Dispatch<ISearchQuerySubmitAction | ISetIsLoading | IUpdateApiQuery>): Promise<void> => {
@@ -132,6 +164,11 @@ export const getSearchQuerySubmitThunk =
         dispatch(setIsLoading(false))
     }
 
+/**
+ * An action to remove selected filter on `redux` store's patients `reducer`
+ * @param index selected endpoint
+ * @returns returns `action` type to `dispatch` the action
+ */
 export const removeSearchFilter = (index: number): IRemoveSearchFilterAction => ({
     type: PatientsDataActions.REMOVE_SEARCH_FILTER,
     payload: index,

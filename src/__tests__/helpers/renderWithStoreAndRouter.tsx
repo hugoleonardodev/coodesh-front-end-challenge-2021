@@ -44,7 +44,7 @@ type TCustomReducers = {
 }
 export const getMockedStore = (
     initialState: TInitialStates,
-    customReducers: TCustomReducers,
+    customReducers?: TCustomReducers,
     // customHistory: ReturnType<typeof createMemoryHistory>,
 ): Store => {
     if (!initialState || !customReducers) {
@@ -60,7 +60,7 @@ export const getMockedStore = (
 export const renderWithRouterAndStore = (
     component: React.ReactElement,
     routeConfigs: ICustomRouteConfig = defaultRouteConfig,
-    customReducers: TCustomReducers,
+    customReducers?: TCustomReducers,
     initialState?: RootStateOrAny,
 ): Record<string, unknown> => {
     const route = routeConfigs.path || '/'

@@ -52,7 +52,7 @@ declare namespace PatientsAPI {
 
     export interface IPatientId {
         name: string
-        value?: string
+        value?: string | null
     }
 
     export interface IPatientPicture {

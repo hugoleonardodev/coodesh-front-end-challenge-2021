@@ -6,7 +6,8 @@ import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 import React from 'react'
 
-import HomeMain from '@layouts/HomeMain'
+// import NotFound from '@components/molecules/NotFound'
+import HomePage from '@pages/HomePage'
 import { ConfigsDataActions, TUserConfigs, TConfigsActionsCreators } from '@store/constants/configsTypes'
 import { TPatientsActionsCreators } from '@store/constants/patientsTypes'
 import { PatientsDataActions } from '@store/constants/patientsTypes'
@@ -24,10 +25,10 @@ export type TPatientsInitialState = {
 } & PatientsAPI.IPatientRootObject
 
 const mockedPatients: TPatientsInitialState = {
-    search: 'brazil',
+    search: '',
     filters: [
-        { query: 'brazil', filter: 'nation' },
-        { query: 'Petersen', filter: 'name' },
+        // { query: 'brazil', filter: 'nation' },
+        // { query: 'madonna', filter: 'name' },
     ],
     results: [
         {
@@ -685,9 +686,6 @@ const userResponse = rest.get('https://randomuser.me/api/', (_request, response,
 
 const server = setupServer(
     userResponse,
-    rest.get('http://localhost:5010/true&page=1&gender=female', async (_request, response, context) => {
-        return response(context.json(firstTenPatients))
-    }),
     rest.get('http://localhost:5010/true&page=1', async (_request, response, context) => {
         return response(context.json(firstTenPatients))
     }),
@@ -708,48 +706,40 @@ afterEach(() => {
 
 afterAll(() => server.close())
 
-const TWO_FILTERS = 2
+// const TWO_FILTERS = 2
 
-describe('HomeMain mocked store with two filters', () => {
-    it('should render two filters and be able to click first one', async () => {
+describe('Renders HomePage to test SearchFilter behavior', () => {
+    it('should be able to type and search for a query', async () => {
         renderWithRouterAndStore(
-            <HomeMain />,
+            <HomePage />,
             { path: '/', history: memoryHistory },
             { customConfigsReducer: configsReducer, customPatientsReducer: patientsReducer },
             initialStates,
         )
 
-        const firstPatient = screen.getByText('Petersen, Marie')
-        expect(firstPatient).toBeInTheDocument()
-
-        const filtersButton = screen.getAllByRole('button', {
-            name: /nation\/brazil/i,
+        const inputSearch = screen.getByRole('textbox', {
+            name: /search for\.{3}/i,
         })
+        expect(inputSearch).toBeInTheDocument()
 
-        expect(filtersButton.length).toBe(TWO_FILTERS)
-        expect(filtersButton[1]).toBeInTheDocument()
+        userEvent.type(inputSearch, 'brazil')
 
-        userEvent.click(filtersButton[1])
-    })
-
-    it('should render two filters and be able to click last one', async () => {
-        renderWithRouterAndStore(
-            <HomeMain />,
-            { path: '/', history: memoryHistory },
-            { customConfigsReducer: configsReducer, customPatientsReducer: patientsReducer },
-            initialStates,
-        )
-
-        const firstPatient = screen.getByText('Petersen, Marie')
-        expect(firstPatient).toBeInTheDocument()
-
-        const filtersButton = screen.getAllByRole('button', {
-            name: /name\/petersen/i,
+        const selectFilter = screen.getByRole('combobox', {
+            name: /filter:/i,
         })
+        expect(selectFilter).toBeInTheDocument()
 
-        expect(filtersButton.length).toBe(TWO_FILTERS)
-        expect(filtersButton[1]).toBeInTheDocument()
+        userEvent.click(selectFilter)
 
-        userEvent.click(filtersButton[1])
+        const nationOption = screen.getByRole('option', { name: /nationality/i })
+        expect(nationOption).toBeInTheDocument()
+        expect(nationOption).toBeVisible()
+
+        userEvent.click(nationOption)
+
+        const searchButton = screen.getByTestId('search-button')
+        expect(searchButton).toBeInTheDocument()
+
+        // userEvent.click(searchButton)
     })
 })

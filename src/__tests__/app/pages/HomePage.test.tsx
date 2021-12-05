@@ -3,10 +3,10 @@
 // import { createMemoryHistory } from 'history'
 // import * as reactRedux from 'react-redux'
 // import * as redux from 'redux'
-
+import firstTenPatients from '__tests__/mocks/json/firstTenPatients'
+import { createMemoryHistory } from 'history'
 // import API mocking utilities from Mock Service Worker
 // import handlers from '__tests__/mocks/handlers'
-import firstTenPatients from '__tests__/mocks/json/firstTenPatients'
 // import axios from 'axios'
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
@@ -16,8 +16,9 @@ import React from 'react'
 import HomePage from '@pages/HomePage'
 import { screen, cleanup } from '@testing-library/react'
 
-import { render } from '../../helpers/testUtils'
-
+// import { render } from '../../helpers/testUtils'
+import { renderWithRouterAndStore } from '../../helpers/renderWithStoreAndRouter'
+const memoryHistory = createMemoryHistory({ initialEntries: ['/'] })
 const userResponse = rest.get('https://randomuser.me/api/', (_request, response, context) => {
     // const query = request.url.searchParams
     // console.log(query)
@@ -67,7 +68,7 @@ afterAll(() => server.close())
 
 describe('Unit Test for HomePage.tsx', () => {
     it('should renders with a logo', () => {
-        render(<HomePage />)
+        renderWithRouterAndStore(<HomePage />, { path: '/', history: memoryHistory })
         const titles = screen.getAllByText('Pharma Inc.')
         expect(titles[0]).toBeInTheDocument()
     })
@@ -93,7 +94,7 @@ describe('Unit Test for HomePage.tsx', () => {
         // useSelector.mockImplementation((selectorFn) => selectorFn(yourMockedStoreData));
         // useDispatch.mockReturnValue(mockedDispatch)
         // const mockAxios = jest.spyOn(axios, 'get')
-        render(<HomePage />)
+        renderWithRouterAndStore(<HomePage />)
 
         const loadings = screen.getAllByTestId('loading')
         expect(loadings[0]).toBeInTheDocument()

@@ -1,5 +1,7 @@
 import { TPatientsActionsCreators } from '@store/constants/patientsTypes'
 import { PatientsDataActions } from '@store/constants/patientsTypes'
+// import { Reducer } from 'react'
+// import { Action } from 'redux'
 
 export interface IFilter {
     query: string
@@ -27,7 +29,7 @@ const patientsReducer = (
     state: TPatientsInitialState = initialState,
     action?: TPatientsActionsCreators,
 ): TPatientsInitialState => {
-    if (action)
+    if (action?.type)
         switch (action.type) {
             case PatientsDataActions.REMOVE_SEARCH_FILTER:
                 return {

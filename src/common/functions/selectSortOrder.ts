@@ -4,12 +4,12 @@ export const sortByAscendent = (patientA: PatientsAPI.IPatientData, patientB: Pa
     if (nameA < nameB) {
         return -1
     }
-    if (nameA > nameB) {
-        return 1
-    }
+    // if (nameA > nameB) {
+    return 1
+    // }
 
     // names must be equal
-    return 0
+    // return 0
 }
 export const sortByDescendent = (
     patientA: PatientsAPI.IPatientData,
@@ -20,12 +20,12 @@ export const sortByDescendent = (
     if (nameA < nameB) {
         return 1
     }
-    if (nameA > nameB) {
-        return -1
-    }
+    // if (nameA > nameB) {
+    return -1
+    // }
 
-    // names must be equal
-    return 0
+    // // names must be equal
+    // return 0
 }
 const selectSortOrder = (
     shouldSort: boolean,

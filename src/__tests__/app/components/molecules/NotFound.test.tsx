@@ -6,6 +6,7 @@ import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 import React from 'react'
 
+import NotFound from '@components/molecules/NotFound'
 import HomePage from '@pages/HomePage'
 import { ConfigsDataActions, TUserConfigs, TConfigsActionsCreators } from '@store/constants/configsTypes'
 import { TPatientsActionsCreators } from '@store/constants/patientsTypes'
@@ -144,7 +145,7 @@ afterAll(() => server.close())
 // const TWO_FILTERS = 2
 
 describe('Renders HomePage to test NotFound behavior', () => {
-    it('should sort the patient list on ascendent order', async () => {
+    it('should render a text when a patient is not found', async () => {
         renderWithRouterAndStore(
             <HomePage />,
             { path: '/', history: memoryHistory },
@@ -152,7 +153,27 @@ describe('Renders HomePage to test NotFound behavior', () => {
             initialStates,
         )
 
-        const firstPatient = screen.getByText('Patient not found.')
-        expect(firstPatient).toBeInTheDocument()
+        const patientNotFound = screen.getByText('Patient not found.')
+        expect(patientNotFound).toBeInTheDocument()
+    })
+
+    it('should render an image and a link when page is not found', async () => {
+        const anyPageMemoryHistory = createMemoryHistory({ initialEntries: ['/any-page'] })
+        renderWithRouterAndStore(
+            <NotFound />,
+            { path: '/any-page', history: anyPageMemoryHistory },
+            { customConfigsReducer: configsReducer, customPatientsReducer: patientsReducer },
+            initialStates,
+        )
+
+        // memoryHistory.replace('/any-page')
+
+        const notFoundImage = await screen.findByRole('img')
+        expect(notFoundImage).toBeInTheDocument()
+
+        const notFoundLink = screen.getByRole('link', {
+            name: /back to home/i,
+        })
+        expect(notFoundLink).toBeInTheDocument()
     })
 })

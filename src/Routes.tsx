@@ -25,7 +25,7 @@ const Routes: React.FC = () => {
                     <SharePatientPage />
                 </React.Suspense>
             </Route>
-            <Route path="/*">
+            <Route path="*">
                 <React.Suspense fallback={<LoadingFallback />}>
                     <NotFound />
                 </React.Suspense>

@@ -10,7 +10,7 @@ const initialState: TUserConfigs = {
 }
 
 const configsReducer = (state: TUserConfigs = initialState, action?: TConfigsActionsCreators): TUserConfigs => {
-    if (action)
+    if (action?.type)
         switch (action.type) {
             case ConfigsDataActions.SWITCH_THEME:
                 return { ...state, isDarkTheme: action.payload }

@@ -82,7 +82,11 @@ const SearchFilter: React.FC = () => {
                     <div>No filters applied</div>
                 )}
             </SubmitSearchFiltersContainer>
-            <SubmitSearchButton type="submit" disabled={filters.length === __MAX_FILTERS_LENGTH__}>
+            <SubmitSearchButton
+                type="submit"
+                disabled={filters.length === __MAX_FILTERS_LENGTH__}
+                data-testid="search-button"
+            >
                 <SearchIcon />
             </SubmitSearchButton>
         </SearchFilterForm>

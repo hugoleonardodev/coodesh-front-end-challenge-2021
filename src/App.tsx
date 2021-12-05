@@ -1,6 +1,7 @@
-import { ConnectedRouter } from 'connected-react-router'
 import React from 'react'
 import { Provider as ReduxStoreProvider } from 'react-redux'
+
+import { ConnectedRouter } from 'connected-react-router'
 import styled, { ThemeProvider } from 'styled-components'
 
 import goodContrastTheme from '@common/themes/goodContrastTheme'

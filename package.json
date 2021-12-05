@@ -1,9 +1,9 @@
 {
-  "name": "template-front-end",
+  "name": "coodesh-front-end-challenge-2021-react",
   "private": true,
   "author": "Hugo Leonardo",
   "version": "1.0.0",
-  "description": "A template for front-end projects with TypeScript and React.",
+  "description": "A solution for Coodesh Front-End Challenge 2021. With all requirements and differentials. Plus some bonus requirements",
   "repository": {
     "type": "git",
     "url": "git@github.com:hugoleonardodev/template-front-end.git"

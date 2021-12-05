@@ -1,0 +1,23 @@
+{
+    "env": {
+        "coverage": true
+    },
+    "compilerOptions": {
+      "target": "es5",
+      "lib": ["es5", "dom"],
+      "types": ["cypress"]
+    },
+    "include": ["**/*.ts", "**/*.tsx"],
+    "theme": "dark",
+    "darkMediaQuery": true,
+    "fixturesFolder": "cypress/fixtures",
+    "integrationFolder": "cypress/integration",
+    "screenshotsFolder": "cypress/screenshots",
+    "videosFolder": "cypress/videos",
+    "componentFolder": "cypress/component",
+    "supportFile": "cypress/support/index.js",
+    "pluginFile": "cypress/plugins/index.js",
+    "baseUrl": "http://localhost:5010",
+    "viewportHeight": 768,
+    "viewportWidth": 1024
+}

@@ -1,10 +1,11 @@
-import { render } from '__tests__/helpers/testUtils'
 import React from 'react'
 
-import SharedPatientPage from '@pages/SharePatientPage'
 import { screen, cleanup } from '@testing-library/react'
 
-// import { render } from '../helpers/TestRenderer'
+import { render } from '__tests__/helpers/testUtils'
+
+import SharedPatientPage from '@pages/SharePatientPage'
+
 afterEach(() => {
     jest.resetModules()
     jest.clearAllMocks()

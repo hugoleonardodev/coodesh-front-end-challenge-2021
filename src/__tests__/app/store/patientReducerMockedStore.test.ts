@@ -1,9 +1,10 @@
+import { Action, createStore, Reducer } from 'redux'
+
 import firstTenPatients from '__tests__/mocks/json/firstTenPatients'
-import { Reducer } from 'react'
-import { Action, createStore } from 'redux'
 
 import { PatientsDataActions } from '@store/constants/patientsTypes'
 import patientsReducer, { TPatientsInitialState } from '@store/reducers/patientsReducer'
+
 const initialState: TPatientsInitialState = {
     search: 'brazil',
     filters: [
@@ -18,6 +19,7 @@ const initialState: TPatientsInitialState = {
         version: '1.3',
     },
 }
+
 const reducer = patientsReducer as Reducer<TPatientsInitialState, Action<unknown>>
 
 const patientsStore = createStore(reducer)

@@ -30,9 +30,7 @@ type TSharedPatient = {
 
 const SharePatient: React.FC<TSharedPatient> = () => {
     const { results } = useSelector((state: IRootStateWithReducers) => state.patients)
-    const { url, path } = useRouteMatch()
-    console.log(path)
-    console.log(window.location.pathname)
+    const { url } = useRouteMatch()
     const history = useHistory()
     const [copiedText, setCopiedText] = useCopyToClipboard()
     const patientById = results.find(patient => patient.login.uuid === url.split('/')[2])

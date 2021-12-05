@@ -1,15 +1,15 @@
-import { renderWithRouterAndStore } from '__tests__/helpers/renderWithStoreAndRouter'
-// import { render } from '__tests__/helpers/testUtils'
-// import mockStore from '__tests__/mocks/store'
-import { createMemoryHistory } from 'history'
 import React from 'react'
 
+import { createMemoryHistory } from 'history'
+
+import { screen, cleanup } from '@testing-library/react'
+
+import { renderWithRouterAndStore } from '__tests__/helpers/renderWithStoreAndRouter'
+
 import HomePage from '@pages/HomePage'
-// import { render } from '../helpers/TestRenderer'
 import { ConfigsDataActions, TUserConfigs, TConfigsActionsCreators } from '@store/constants/configsTypes'
 import { TPatientsActionsCreators } from '@store/constants/patientsTypes'
 import { PatientsDataActions } from '@store/constants/patientsTypes'
-import { screen, cleanup } from '@testing-library/react'
 
 export interface IFilter {
     query: string
@@ -680,8 +680,6 @@ afterEach(() => {
 })
 describe('HomePage with a mocked store.tsx', () => {
     it('should render', async () => {
-        // render(<HomePage />, {})
-        // memoryHistory.replace('/patient/ac9abe6c-4c24-4576-95e8-3e8e42d080a9')
         renderWithRouterAndStore(
             <HomePage />,
             { path: '/', history: memoryHistory },
@@ -691,8 +689,5 @@ describe('HomePage with a mocked store.tsx', () => {
 
         const firstPatient = screen.getByText('Petersen, Marie')
         expect(firstPatient).toBeInTheDocument()
-
-        // const notFound = screen.getByText('Patient not found')
-        // expect(notFound).toBeInTheDocument()
     })
 })

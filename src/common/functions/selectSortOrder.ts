@@ -1,15 +1,12 @@
 export const sortByAscendent = (patientA: PatientsAPI.IPatientData, patientB: PatientsAPI.IPatientData): -1 | 0 | 1 => {
     const nameA = patientA.name.last.toUpperCase() // ignore upper and lowercase
     const nameB = patientB.name.last.toUpperCase() // ignore upper and lowercase
+
     if (nameA < nameB) {
         return -1
     }
-    // if (nameA > nameB) {
-    return 1
-    // }
 
-    // names must be equal
-    // return 0
+    return 1
 }
 export const sortByDescendent = (
     patientA: PatientsAPI.IPatientData,
@@ -17,15 +14,12 @@ export const sortByDescendent = (
 ): -1 | 0 | 1 => {
     const nameA = patientA.name.last.toUpperCase() // ignore upper and lowercase
     const nameB = patientB.name.last.toUpperCase() // ignore upper and lowercase
+
     if (nameA < nameB) {
         return 1
     }
-    // if (nameA > nameB) {
-    return -1
-    // }
 
-    // // names must be equal
-    // return 0
+    return -1
 }
 const selectSortOrder = (
     shouldSort: boolean,

@@ -1,17 +1,16 @@
-import { renderWithRouterAndStore } from '__tests__/helpers/renderWithStoreAndRouter'
-// import { render } from '__tests__/helpers/testUtils'
-// import mockStore from '__tests__/mocks/store'
-import { createMemoryHistory } from 'history'
 import React from 'react'
-// import { useHistory } from 'react-router'
+
+import { createMemoryHistory } from 'history'
+
+import { screen, cleanup } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+
+import { renderWithRouterAndStore } from '__tests__/helpers/renderWithStoreAndRouter'
 
 import SharedPatientPage from '@pages/SharePatientPage'
-// import { render } from '../helpers/TestRenderer'
 import { ConfigsDataActions, TUserConfigs, TConfigsActionsCreators } from '@store/constants/configsTypes'
 import { TPatientsActionsCreators } from '@store/constants/patientsTypes'
 import { PatientsDataActions } from '@store/constants/patientsTypes'
-import { screen, cleanup } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
 
 export interface IFilter {
     query: string
@@ -683,17 +682,12 @@ afterEach(() => {
 })
 describe('SharedPatientPage.tsx', () => {
     it('should render', async () => {
-        // render(<SharedPatientPage />, {})
-        // memoryHistory.replace('/patient/ac9abe6c-4c24-4576-95e8-3e8e42d080a9')
         renderWithRouterAndStore(
             <SharedPatientPage />,
             { path: '/patient/ac9abe6c-4c24-4576-95e8-3e8e42d080a9', history: memoryHistory },
             { customConfigsReducer: configsReducer, customPatientsReducer: patientsReducer },
             initialStates,
         )
-        // const getHistory = useHistory()
-        // console.log(getHistory.location.pathname)
-        // console.log(memoryHistory)
         const logo = screen.getByText('Copy to clipboard:')
         expect(logo).toBeInTheDocument()
 
@@ -707,8 +701,5 @@ describe('SharedPatientPage.tsx', () => {
         userEvent.click(copyToClpiboardButton)
         expect(mockedAlert).toHaveBeenCalled()
         expect(mockedAlert).toHaveBeenCalledWith('Clipboard not supported by this browser.')
-
-        // const copiedSuccessfuly = await screen.findByText('Copied succesfully.')
-        // expect(copiedSuccessfuly).toBeInTheDocument()
     })
 })

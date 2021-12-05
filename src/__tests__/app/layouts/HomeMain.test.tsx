@@ -1,17 +1,19 @@
-import { renderWithRouterAndStore } from '__tests__/helpers/renderWithStoreAndRouter'
-import firstTenPatients from '__tests__/mocks/json/firstTenPatients'
-// import axios from 'axios'
+import React from 'react'
+
 import { createMemoryHistory } from 'history'
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
-import React from 'react'
+
+import { screen, cleanup } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+
+import { renderWithRouterAndStore } from '__tests__/helpers/renderWithStoreAndRouter'
+import firstTenPatients from '__tests__/mocks/json/firstTenPatients'
 
 import HomeMain from '@layouts/HomeMain'
 import { ConfigsDataActions, TUserConfigs, TConfigsActionsCreators } from '@store/constants/configsTypes'
 import { TPatientsActionsCreators } from '@store/constants/patientsTypes'
 import { PatientsDataActions } from '@store/constants/patientsTypes'
-import { screen, cleanup } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
 
 export interface IFilter {
     query: string
@@ -694,7 +696,6 @@ const server = setupServer(
     rest.get('http://localhost:5010/true&nat=nation&page=1', async (_request, response, context) => {
         return response(context.json(firstTenPatients))
     }),
-    // ...handlers,
 )
 
 beforeAll(() => server.listen())

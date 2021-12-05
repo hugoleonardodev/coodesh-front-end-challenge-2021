@@ -1,7 +1,7 @@
+import React from 'react'
+
 import { renderWithRouterAndStore } from '__tests__/helpers/renderWithStoreAndRouter'
 import { cleanup, screen } from '__tests__/helpers/testUtils'
-// import firstTenPatients from '__tests__/mocks/json/firstTenPatients'
-import React from 'react'
 
 import { useIntersectionObserver } from '@common/hooks'
 import InfinityScroll from '@components/organisms/InfinityScroll'
@@ -23,7 +23,6 @@ const TestComponentMock: React.FC = () => {
 export default TestComponentMock
 
 afterEach(() => {
-    // server.resetHandlers()
     jest.resetModules()
     jest.clearAllMocks()
     cleanup()

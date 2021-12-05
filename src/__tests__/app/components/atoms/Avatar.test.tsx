@@ -1,17 +1,18 @@
-import { renderWithRouterAndStore } from '__tests__/helpers/renderWithStoreAndRouter'
 import React from 'react'
 
-import Avatar from '@components/atoms/Avatar'
 import { screen, cleanup } from '@testing-library/react'
 
+import { renderWithRouterAndStore } from '__tests__/helpers/renderWithStoreAndRouter'
+
+import Avatar from '@components/atoms/Avatar'
+
 afterEach(() => {
-    // server.resetHandlers()
     jest.resetModules()
     jest.clearAllMocks()
     cleanup()
 })
 
-describe('Renders HomePage to test NotFound behavior', () => {
+describe('Avatar component', () => {
     it('should render a text when a patient is not found', async () => {
         renderWithRouterAndStore(<Avatar avatarUrl="https://github.com/hugoleonardodev.png" avatarSize="medium" />)
 

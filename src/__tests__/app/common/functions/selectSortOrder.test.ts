@@ -1,5 +1,6 @@
-import firstTenPatients from '__tests__/mocks/json/firstTenPatients'
 import React from 'react'
+
+import firstTenPatients from '__tests__/mocks/json/firstTenPatients'
 
 import { selectSortOrder } from '@common/functions'
 

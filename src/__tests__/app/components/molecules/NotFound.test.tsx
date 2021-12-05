@@ -1,18 +1,19 @@
-import { renderWithRouterAndStore } from '__tests__/helpers/renderWithStoreAndRouter'
-import firstTenPatients from '__tests__/mocks/json/firstTenPatients'
-// import axios from 'axios'
+import React from 'react'
+
 import { createMemoryHistory } from 'history'
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
-import React from 'react'
+
+import { screen, cleanup } from '@testing-library/react'
+
+import { renderWithRouterAndStore } from '__tests__/helpers/renderWithStoreAndRouter'
+import firstTenPatients from '__tests__/mocks/json/firstTenPatients'
 
 import NotFound from '@components/molecules/NotFound'
 import HomePage from '@pages/HomePage'
 import { ConfigsDataActions, TUserConfigs, TConfigsActionsCreators } from '@store/constants/configsTypes'
 import { TPatientsActionsCreators } from '@store/constants/patientsTypes'
 import { PatientsDataActions } from '@store/constants/patientsTypes'
-import { screen, cleanup } from '@testing-library/react'
-// import userEvent from '@testing-library/user-event'
 
 export interface IFilter {
     query: string
@@ -128,7 +129,6 @@ const server = setupServer(
     rest.get('http://localhost:5010/true&page=1', async (_request, response, context) => {
         return response(context.json(firstTenPatients))
     }),
-    // ...handlers,
 )
 
 beforeAll(() => server.listen())
@@ -141,8 +141,6 @@ afterEach(() => {
 })
 
 afterAll(() => server.close())
-
-// const TWO_FILTERS = 2
 
 describe('Renders HomePage to test NotFound behavior', () => {
     it('should render a text when a patient is not found', async () => {
@@ -165,8 +163,6 @@ describe('Renders HomePage to test NotFound behavior', () => {
             { customConfigsReducer: configsReducer, customPatientsReducer: patientsReducer },
             initialStates,
         )
-
-        // memoryHistory.replace('/any-page')
 
         const notFoundImage = await screen.findByRole('img')
         expect(notFoundImage).toBeInTheDocument()

@@ -1,6 +1,7 @@
+import React from 'react'
+
 import { renderWithRouterAndStore } from '__tests__/helpers/renderWithStoreAndRouter'
 import { cleanup, screen } from '__tests__/helpers/testUtils'
-import React from 'react'
 
 import { useWindowSize } from '@common/hooks'
 
@@ -21,7 +22,6 @@ const TestComponentMock: React.FC = () => {
 export default TestComponentMock
 
 afterEach(() => {
-    // server.resetHandlers()
     jest.resetModules()
     jest.clearAllMocks()
     cleanup()

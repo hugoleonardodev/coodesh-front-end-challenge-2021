@@ -1,4 +1,5 @@
 import { CardTitle } from 'reactstrap'
+
 import styled from 'styled-components'
 
 export const SharedPatientButtonsContainer = styled.div`

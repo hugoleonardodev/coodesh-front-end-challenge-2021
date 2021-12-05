@@ -1,9 +1,9 @@
 import { Modal, ModalFooter, ModalHeader } from 'reactstrap'
+
 import styled from 'styled-components'
 
-export const ModalPatientContainer = styled.section`
-    /* transform: translateY(108px); */
-`
+export const ModalPatientContainer = styled.section``
+
 export const PatientModal = styled(Modal)`
     margin-top: 108px;
     img {

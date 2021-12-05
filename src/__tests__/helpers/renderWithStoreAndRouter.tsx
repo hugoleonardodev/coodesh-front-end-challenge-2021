@@ -1,23 +1,19 @@
 import '@testing-library/jest-dom'
-import customStore from '__tests__/mocks/store'
-import { ConnectedRouter } from 'connected-react-router'
-import { createMemoryHistory, History } from 'history'
 import React from 'react'
 import { Provider, RootStateOrAny } from 'react-redux'
-// import store from 'store/index'
-// import { history } from 'store/index'
 import { Route } from 'react-router'
+
+import { ConnectedRouter } from 'connected-react-router'
+import { createMemoryHistory, History } from 'history'
 import { Store } from 'redux'
-// import thunkMiddleware from 'redux-thunk'
 import { ThemeProvider } from 'styled-components'
+
+import customStore from '__tests__/mocks/store'
 
 import goodContrastTheme from '@common/themes/goodContrastTheme'
 import { TConfigsActionsCreators, TUserConfigs } from '@store/constants/configsTypes'
 import { TPatientsActionsCreators } from '@store/constants/patientsTypes'
 import store from '@store/index'
-// import rootReducer from '@store/reducers/_rootReducer'
-// import { Router } from 'react-router'
-// import configsReducer from '@store/reducers/configsReducer'
 import { TPatientsInitialState } from '@store/reducers/patientsReducer'
 
 import { render } from './testUtils'
@@ -42,19 +38,12 @@ type TCustomReducers = {
         action?: TPatientsActionsCreators | undefined,
     ) => TPatientsInitialState
 }
-export const getMockedStore = (
-    initialState: TInitialStates,
-    customReducers?: TCustomReducers,
-    // customHistory: ReturnType<typeof createMemoryHistory>,
-): Store => {
+export const getMockedStore = (initialState: TInitialStates, customReducers?: TCustomReducers): Store => {
     if (!initialState || !customReducers) {
         return store
     }
 
-    // if (initialState.configs && initialState.patients) {
-
     return customStore(defaultHistory, customReducers.customConfigsReducer, customReducers.customPatientsReducer)
-    // }
 }
 
 export const renderWithRouterAndStore = (

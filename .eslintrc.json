@@ -81,7 +81,10 @@
             {
                 "newlinesBetween": "always", // new line between groups
                 "groups": [
+                    "/^react/",
                     "module",
+                    "/^@testing-library/",
+                    "/^__tests__/",
                     "/^@server/shared/",
                     "/^@/",
                     ["parent", "sibling", "index"]

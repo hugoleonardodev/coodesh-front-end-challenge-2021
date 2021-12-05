@@ -7,9 +7,10 @@ module.exports = {
     moduleNameMapper: {
         // Files Mocks see: https://jestjs.io/docs/webpack
         '\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-            '<rootDir>/__tests__/mocks/fileMock.ts',
+            '<rootDir>/__tests__/mocks/fileMock.js',
+
         // Styles Mocks see: https://jestjs.io/docs/webpack
-        '\\.(css|scss)$': '<rootDir>/__tests__/mocks/styleMock.ts',
+        '\\.(css|scss)$': '<rootDir>/__tests__/mocks/styleMock.js',
 
         // Svgr componets Mocks
         "\\.svg": "<rootDir>/__tests__/mocks/svgrMock.js",
@@ -84,6 +85,7 @@ module.exports = {
         '/coverage/',
         'index.tsx',
         'index.ts',
+        '_rootReducerTypes.ts',
     ],
 
     // Indicates which provider should be used to instrument code for coverage

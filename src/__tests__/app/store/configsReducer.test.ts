@@ -1,10 +1,8 @@
-// import firstTenConfigs from '__tests__/mocks/json/firstTenConfigs'
-import { Reducer } from 'react'
-import { Action, createStore } from 'redux'
+import { Action, createStore, Reducer } from 'redux'
 
 import { TUserConfigs, ConfigsDataActions } from '@store/constants/configsTypes'
-// import { ConfigsDataActions } from '@store/constants/ConfigsTypes'
 import configsReducer from '@store/reducers/configsReducer'
+
 const initialState: TUserConfigs = {
     user: 'Hugo Leonardo',
     email: 'hugoleonardo.dev@gmail.com',
@@ -13,6 +11,7 @@ const initialState: TUserConfigs = {
     isLoading: true,
     apiQuery: '',
 }
+
 const reducer = configsReducer as Reducer<TUserConfigs, Action<unknown>>
 
 const configsStore = createStore(reducer)

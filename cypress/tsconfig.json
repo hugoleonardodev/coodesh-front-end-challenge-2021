@@ -1,20 +1,17 @@
 {
-    "extends": "../tsconfig.json",
     "include": [
       "../src",
       "../node_modules/cypress",
       "../node_modules/cypress-dark/src",
+      "**/*.spec.ts",
       "**/*.ts",
       "**/*.tsx"
     ],
-    "exclude": [],
+    "exclude": ["jest", "@types/jest"],
     "compilerOptions": {
       "isolatedModules": false,
-      "noEmit": false,
+      "noEmit": true,
       "types": ["cypress"],
       "baseUrl": ".",
-      "paths": {
-        "react-svgmt": ["react-svgmt"]
-      }
     }
 }

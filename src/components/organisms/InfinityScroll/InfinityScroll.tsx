@@ -10,18 +10,22 @@ type TInfinityScrollProperties = {
     isBottomVisible: boolean
     hasNext?: boolean
 }
-const MIN_SCREEN_HEIGHT = 640
 
 const InfinityScroll: React.FC<TInfinityScrollProperties> = ({ isBottomVisible }) => {
     const dispatch = useDispatch()
+    const { isLoading } = useSelector((state: IRootStateWithReducers) => state.configs)
     const {
         info: { page },
         results,
     } = useSelector((state: IRootStateWithReducers) => state.patients)
 
     React.useEffect(() => {
-        if (isBottomVisible && window.scrollY > MIN_SCREEN_HEIGHT) dispatch(getPatientsByPageThunk(page + 1))
-    }, [isBottomVisible, dispatch, page])
+        const MAX_API_RESPONSE_RESULTS = 50
+        if (!isLoading && isBottomVisible && results.length >= MAX_API_RESPONSE_RESULTS) {
+            dispatch(getPatientsByPageThunk(page + 1))
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isBottomVisible])
 
     return <>{!isBottomVisible && results.length > 0 ? <LoadingMore /> : <Footer />}</>
 }

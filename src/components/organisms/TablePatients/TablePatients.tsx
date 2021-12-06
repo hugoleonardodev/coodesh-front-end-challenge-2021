@@ -59,17 +59,29 @@ const TablePatients: React.FC = () => {
             <thead>
                 <tr>
                     <th>#</th>
-                    <NameTh>
+                    <NameTh aria-sort={isAscendent ? 'ascending' : 'descending'}>
                         <span>Name</span>{' '}
                         {isAscendent ? (
-                            <SortDownIcon onClick={handleSortName} data-testid="table-sort-down" />
+                            <SortDownIcon
+                                onClick={handleSortName}
+                                data-testid="table-sort-down"
+                                role="button"
+                                aria-labelledby="sort-ascending"
+                                id="sort-ascending"
+                            />
                         ) : (
-                            <SortUpIcon onClick={handleSortName} data-testid="table-sort-up" />
+                            <SortUpIcon
+                                onClick={handleSortName}
+                                data-testid="table-sort-up"
+                                role="button"
+                                aria-labelledby="sort-descending"
+                                id="sort-descending"
+                            />
                         )}
                     </NameTh>
                     <th>
                         <UncontrolledDropdown>
-                            <DropdownToggle caret nav data-testid="gender-dropdown-toggle">
+                            <DropdownToggle caret nav data-testid="gender-dropdown-toggle" id="gender-dropdown-toggle">
                                 Gender
                             </DropdownToggle>
                             <DropdownMenu end>
@@ -77,6 +89,7 @@ const TablePatients: React.FC = () => {
                                     onClick={handleGenderFilter}
                                     defaultValue="female"
                                     data-testid="female-gender"
+                                    id="female-gender"
                                 >
                                     Female
                                 </DropdownItem>
@@ -85,11 +98,17 @@ const TablePatients: React.FC = () => {
                                     onClick={handleGenderFilter}
                                     defaultValue="male"
                                     data-testid="male-gender"
+                                    id="male-gender"
                                 >
                                     Male
                                 </DropdownItem>
                                 <DropdownItem divider />
-                                <DropdownItem onClick={handleGenderFilter} defaultValue="" data-testid="any-gender">
+                                <DropdownItem
+                                    onClick={handleGenderFilter}
+                                    defaultValue=""
+                                    data-testid="any-gender"
+                                    id="any-gender"
+                                >
                                     Any
                                 </DropdownItem>
                             </DropdownMenu>
@@ -106,7 +125,7 @@ const TablePatients: React.FC = () => {
                               <th scope="row">{index + 1}</th>
                               {skeletonsRows.map((skeleton, index) => (
                                   <td key={`patient-row-${index}-#${skeleton}`}>
-                                      <Skeleton isLarge={index === 0} />
+                                      <Skeleton isLarge={index === 0} data-test="table-skeleton" />
                                   </td>
                               ))}
                           </tr>
@@ -114,7 +133,9 @@ const TablePatients: React.FC = () => {
                     : results.map((patient, index) => (
                           <TableRow key={`patient-${index}-id-${patient.login.uuid}`} data-testid="patient">
                               <th scope="row">{index + 1}</th>
-                              <td>{`${patient.name.last}, ${patient.name.first}`}</td>
+                              <td id={`${patient.name.last.toLowerCase()}-${patient.name.first.toLowerCase()}`}>
+                                  {`${patient.name.last}, ${patient.name.first}`}
+                              </td>
                               <td>{patient.gender}</td>
                               <td>{getUsDateFormat(patient.dob.date)}</td>
                               <td>
@@ -128,6 +149,7 @@ const TablePatients: React.FC = () => {
                                       onClick={hanldeSharePatient}
                                       color="success"
                                       data-testid={`share-patient-${index + 1}`}
+                                      id={`table-share-patient-${patient.login.uuid}`}
                                   >
                                       <ShareIcon /> <span>Share</span>
                                   </Button>

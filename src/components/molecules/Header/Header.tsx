@@ -30,7 +30,7 @@ const Header: React.FC = () => {
             <NavbarBrand href="/">
                 <LogoIcon /> Pharma Inc.
             </NavbarBrand>
-            <NavbarToggler onClick={handleToggle} />
+            <NavbarToggler onClick={handleToggle} id="header-nav-bar-toggler" />
             <HeaderNavCollapse isOpen={shouldToggle} navbar>
                 <Nav className="me-auto" navbar>
                     <UncontrolledDropdown inNavbar nav>

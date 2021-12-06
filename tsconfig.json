@@ -138,5 +138,5 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Recommended",
   "include": ["src/**/*", "src/__tests_/utils/jest-setup.ts", "src/__tests_/utils/test-utils.tsx"],
-  "exclude": ["node_modules", "dist", "build", "**/*.spec.ts", "cypress"]
+  "exclude": ["node_modules", "dist", "build",  "**/*.test.ts","**/*.spec.ts", "cypress"]
 }

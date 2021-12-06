@@ -60,7 +60,7 @@ const HomeMain: React.FC = () => {
             </MobileSubmitSearchFilter>
             <TablePatients />
             <InfinityScroll isBottomVisible={isVisible} />
-            <div ref={infinityScrollBottomReference} />
+            <div ref={infinityScrollBottomReference} id="infinity-scroll-bottom-reference" />
         </HomeMainContainer>
     )
 }

@@ -34,7 +34,7 @@ const ModalPatient: React.FC<TModalPatientProperties> = ({ children, patient }) 
 
     return (
         <ModalPatientContainer>
-            <Button color="primary" onClick={toggleModal}>
+            <Button color="primary" onClick={toggleModal} id={`patient-id-${patient.login.uuid}`}>
                 {children}
             </Button>
             <PatientModal isOpen={shouldModalOpen} toggle={toggleModal} id="modal-patient-portal">
@@ -71,10 +71,10 @@ const ModalPatient: React.FC<TModalPatientProperties> = ({ children, patient }) 
                     </p>
                 </ModalBody>
                 <PatientModalFooter>
-                    <Button onClick={handleSharePatient} color="success">
+                    <Button onClick={handleSharePatient} color="success" id="modal-share-button">
                         <ShareIcon /> Share
                     </Button>
-                    <Button onClick={toggleModal}>
+                    <Button onClick={toggleModal} id="modal-close-button">
                         <CloseIcon /> Close
                     </Button>
                 </PatientModalFooter>

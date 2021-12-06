@@ -153,7 +153,7 @@ export const getSearchQuerySubmitThunk =
     async (dispatch: Dispatch<ISearchQuerySubmitAction | ISetIsLoading | IUpdateApiQuery>): Promise<void> => {
         dispatch(setIsLoading(true))
 
-        const filteredPatients = await getSearchQuerySumit(queryFilters, page)
+        const filteredPatients = await getSearchQuerySumit(queryFilters, filters, page)
 
         dispatch(updateApiQuery(filteredPatients.request.responseURL))
 

@@ -42,6 +42,7 @@ const patientsReducer = (
                     info: {
                         ...state.info,
                         results: state.info.results + action.payload.info.results,
+                        page: action.payload.info.page,
                     },
                 }
             case PatientsDataActions.SEARCH_QUERY_SUBMIT:

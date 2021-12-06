@@ -67,7 +67,7 @@ const SearchFilter: React.FC = () => {
                 </Input>
                 <Label for="selectFilter">Filter:</Label>
             </FormGroup>
-            <SubmitSearchFiltersContainer>
+            <SubmitSearchFiltersContainer id="search-filters">
                 {filters.length > 0 ? (
                     filters.map(({ query, filter }, index) => (
                         <Filter
@@ -86,6 +86,7 @@ const SearchFilter: React.FC = () => {
                 type="submit"
                 disabled={filters.length === __MAX_FILTERS_LENGTH__}
                 data-testid="search-button"
+                id="search-button"
             >
                 <SearchIcon />
             </SubmitSearchButton>

@@ -10,6 +10,7 @@
     "include": ["**/*.ts", "**/*.tsx"],
     "theme": "dark",
     "darkMediaQuery": true,
+    "scrollBehavior": false,
     "fixturesFolder": "cypress/fixtures",
     "integrationFolder": "cypress/integration",
     "screenshotsFolder": "cypress/screenshots",

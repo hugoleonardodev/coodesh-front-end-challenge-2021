@@ -123,7 +123,7 @@ const SharePatient: React.FC<TSharedPatient> = () => {
                             <UncontrolledTooltip placement="right" target="copy-to-clipboard" trigger="click">
                                 {copiedText ? 'Copied succesfully.' : 'Something went wrong.'}
                             </UncontrolledTooltip>
-                            <Button onClick={handleGoBack}>
+                            <Button onClick={handleGoBack} id="back-to-list">
                                 <BackIcon /> Back
                             </Button>
                         </SharedPatientButtonsContainer>

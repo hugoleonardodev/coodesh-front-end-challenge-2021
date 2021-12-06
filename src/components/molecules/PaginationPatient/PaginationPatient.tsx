@@ -29,20 +29,20 @@ const PaginationPatient: React.FC = () => {
     }, [dispatch, filters, page, search])
     return (
         <PatientPagination aria-label="pagination" size="lg">
-            <PaginationItem disabled={page < __MIN_PAGE_COUNT_TO_SKIP__}>
+            <PaginationItem disabled={page < __MIN_PAGE_COUNT_TO_SKIP__} id="pagination-first">
                 <PaginationLink first onClick={handlePreviousTenPages} />
             </PaginationItem>
-            <PaginationItem disabled={page < __MIN_PAGE_COUNT_TO_PREVIOUS__}>
+            <PaginationItem disabled={page < __MIN_PAGE_COUNT_TO_PREVIOUS__} id="pagination-prev">
                 <PaginationLink previous onClick={handlePreviousPage} />
             </PaginationItem>
             <PaginationItem disabled={true}>
-                <PaginationLink>{page}</PaginationLink>
+                <PaginationLink id="pagination-page">{page}</PaginationLink>
             </PaginationItem>
             <PaginationItem>
-                <PaginationLink next onClick={handleNextPage} />
+                <PaginationLink next onClick={handleNextPage} id="pagination-next" />
             </PaginationItem>
             <PaginationItem>
-                <PaginationLink last onClick={handleNextTenPages} />
+                <PaginationLink last onClick={handleNextTenPages} id="pagination-last" />
             </PaginationItem>
         </PatientPagination>
     )

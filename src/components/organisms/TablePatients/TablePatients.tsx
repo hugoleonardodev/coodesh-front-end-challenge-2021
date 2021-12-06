@@ -27,6 +27,7 @@ const TablePatients: React.FC = () => {
         info: { page },
         search,
         results,
+        filters,
     } = useSelector((state: IRootStateWithReducers) => state.patients)
     const { isLoading } = useSelector((state: IRootStateWithReducers) => state.configs)
     const history = useHistory()
@@ -45,11 +46,13 @@ const TablePatients: React.FC = () => {
 
     const handleGenderFilter = React.useCallback(
         (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-            const textContent = event.currentTarget.textContent
-            if (textContent === 'any') return dispatch(getPatientsByPageThunk(page, ''))
-            return dispatch(getPatientsByPageThunk(page, textContent?.toLowerCase()))
+            if (event.currentTarget.textContent) {
+                const textContent = event.currentTarget.textContent
+                return dispatch(getPatientsByPageThunk(page, textContent.toLowerCase(), [], filters))
+            }
+            return dispatch(getPatientsByPageThunk(page, '', [], filters))
         },
-        [dispatch, page],
+        [dispatch, filters, page],
     )
     if (results.length === 0 && search !== '') {
         return <NotFound patient />

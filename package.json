@@ -23,6 +23,8 @@
   "main": "index.tsx",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --mode production",
+    "cy:open": "npx cypress open",
+    "cy:coverage": "npx nyc report --reporter=text-summary",
     "lint": "npx stylelint **/*.styles.ts && eslint --ext .tsx,.ts src",
     "lint:fix": "eslint --ext .tsx,.ts --fix src",
     "lint:css": "npx stylelint **/*.styles.ts",
@@ -42,6 +44,7 @@
   },
   "keywords": [
     "tempĺate",
+    "mvp",
     "react",
     "front-end",
     "typescript",

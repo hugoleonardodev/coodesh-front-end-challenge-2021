@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
-describe('Visit home and sort table ascending and descending', () => {
-    it('should be able to sort on both ascending and descending orders', () => {
+describe('Visit home and filter patients by genders', () => {
+    it('should be able filter by female, male, or any gender', () => {
         cy.visit('/')
         cy.wait(1000)
 

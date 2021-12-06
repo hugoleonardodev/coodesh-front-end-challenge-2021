@@ -57,7 +57,7 @@ module.exports = {
                     '^@public/(.+)': './public/\\1',
                     '^@services/(.+)': './src/services/\\1',
                     '^@services/api/(.+)': './src/services/api/\\1',
-                    '^@services/auth/(.+)': './src/services/auth/\\1',
+                    '^@services/helpers/(.+)': './src/services/helpers/\\1',
                     '^@store/index': './src/store/index.ts',
                     '^@store/actions/(.+)': './src/store/actions/\\1',
                     '^@store/constants/(.+)': './src/store/constants/\\1',

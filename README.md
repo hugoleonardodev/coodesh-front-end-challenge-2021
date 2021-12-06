@@ -57,18 +57,18 @@ With a lot of configurations for development and production environments. Coveri
 
 Not included on requirements:
 
-1. ✅ Code coverage > 90 % ☔️
-2. ✅ Strong types
-3. ✅ Clean Code principles
-4. ✅ Design Patterns
-6. ✅ Responsive Design
-5. ✅ Development experience
-7. ✅ Deployment
-8. ✅ Infinity Scroll
-9. ✅ Custom Hooks
-10.✅ Code Splitting
-11.✅ Google Lighthouse 100%
-12.✅ Documentation with JS Docs
+01. ✅ Code coverage > 90 % ☔️
+02. ✅ Strong types
+03. ✅ Clean Code principles
+04. ✅ Design Patterns
+06. ✅ Responsive Design
+05. ✅ Development experience
+07. ✅ Deployment
+08. ✅ Infinity Scroll
+09. ✅ Custom Hooks
+10. ✅ Code Splitting
+11. ✅ Google Lighthouse 100%
+12. ✅ Documentation with JS Docs
 
 ---
 
@@ -104,7 +104,7 @@ Not included on requirements:
 
 This app requires `nvm` to install versions of Node JS.
 
-**Check Node Version:** in order to run all features, this app is running with Node v14.18.0 or above. Intall it with (nvm)[https://github.com/nvm-sh/nvm].
+**Check Node Version:** in order to run all features, this app is running with Node v14.18.0 or above. Intall it with [nvm](https://github.com/nvm-sh/nvm).
 
 1) On root folder of the project, open the terminal:
 
@@ -126,7 +126,7 @@ npm install
 npm start
 ```
 
-4) Run:
+4) Build:
 
 ```
 npm run build
@@ -191,9 +191,9 @@ npm run publish:dev
 
 ## 📡 To Do
 
-[] - Reduce bundle size
-[] - Search Optimization Engine
-[] - Improve layouts with high fidelity frames
-[] - Improve tests cases
-[] - Iterate with PharmaInc contact to get more informations
-[] - Always more work to do...
+- [ ] Reduce bundle size
+- [ ] Search Optimization Engine
+- [ ] Improve layouts with high fidelity frames
+- [ ] Improve tests cases
+- [ ] Iterate with PharmaInc contact to get more informations
+- [ ] Always more work to do...

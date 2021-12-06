@@ -11,10 +11,11 @@ import firstTenPatients from '__tests__/mocks/json/firstTenPatients'
 import HomePage from '@pages/HomePage'
 
 import { renderWithRouterAndStore } from '../../helpers/renderWithStoreAndRouter'
-const memoryHistory = createMemoryHistory({ initialEntries: ['/'] })
+
 const userResponse = rest.get('https://randomuser.me/api/', (_request, response, context) => {
     return response(context.json(firstTenPatients))
 })
+
 // declare which API requests to mock
 const server = setupServer(
     userResponse,
@@ -37,6 +38,8 @@ afterEach(() => {
 })
 // clean up once the tests are done
 afterAll(() => server.close())
+
+const memoryHistory = createMemoryHistory({ initialEntries: ['/'] })
 
 describe('Unit Test for HomePage.tsx', () => {
     it('should renders with a logo', () => {

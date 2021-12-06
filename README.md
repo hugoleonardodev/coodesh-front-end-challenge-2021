@@ -4,6 +4,8 @@ This is my solution to [Coodesh Front-End Challenge 2021](https://lab.coodesh.co
 A MVP TypeScript/React application. Built with Webpack and Babel. From a template wich is from my athoring.
 With a lot of configurations for development and production environments. Covering all the topics from the challenge.
 
+Live on Amazon [PharmaInc App](https://production.d3as0y73pcox7w.amplifyapp.com/).
+
 ---
 
 ## 📜 Summary
@@ -57,13 +59,13 @@ With a lot of configurations for development and production environments. Coveri
 
 Not included on requirements:
 
-01. ✅ Code coverage > 90 % ☔️
+01. ✅ Code coverage > 90%
 02. ✅ Strong types
 03. ✅ Clean Code principles
 04. ✅ Design Patterns
 06. ✅ Responsive Design
 05. ✅ Development experience
-07. ✅ Deployment
+07. ✅ Deployment [PharmaInc App](https://production.d3as0y73pcox7w.amplifyapp.com/)
 08. ✅ Infinity Scroll
 09. ✅ Custom Hooks
 10. ✅ Code Splitting
@@ -189,7 +191,7 @@ npm run publish:dev
 
 ---
 
-## 📡 To Do
+## 🔖 To Do
 
 - [ ] Reduce bundle size
 - [ ] Search Optimization Engine

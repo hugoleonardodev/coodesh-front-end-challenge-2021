@@ -10,7 +10,8 @@ describe('filterByQuery store helper', () => {
             [{ query: 'brazil', filter: 'nation' }],
             [{ query: 'santos', filter: 'name' }],
         )
-        expect(filter.results).toHaveLength(5)
+        const MAX_FILTERED_RESULTS_LENGTH = 5
+        expect(filter.results).toHaveLength(MAX_FILTERED_RESULTS_LENGTH)
     })
 
     it('should filter by a given name', async () => {
@@ -30,7 +31,8 @@ describe('filterByQuery store helper', () => {
 
     it('should filter by a given name', async () => {
         const filter = filterByQuery(firstTenPatients, 'brazil', [{ query: 'brazil', filter: 'nation' }], [])
-        expect(filter.results).toHaveLength(5)
+        const MAX_FILTERED_RESULTS_LENGTH = 5
+        expect(filter.results).toHaveLength(MAX_FILTERED_RESULTS_LENGTH)
     })
 
     it('should filter by a given name', async () => {

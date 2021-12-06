@@ -6,24 +6,14 @@ import { setupServer } from 'msw/node'
 
 import { screen, cleanup } from '@testing-library/react'
 
-import { renderWithRouterAndStore } from '__tests__/helpers/renderWithStoreAndRouter'
+import { IMockedInitialStates, renderWithRouterAndStore } from '__tests__/helpers/renderWithStoreAndRouter'
 import firstTenPatients from '__tests__/mocks/json/firstTenPatients'
+import getMockedStore from '__tests__/mocks/store/getMockedStore'
 
 import NotFound from '@components/molecules/NotFound'
 import HomePage from '@pages/HomePage'
-import { ConfigsDataActions, TUserConfigs, TConfigsActionsCreators } from '@store/constants/configsTypes'
-import { TPatientsActionsCreators } from '@store/constants/patientsTypes'
-import { PatientsDataActions } from '@store/constants/patientsTypes'
-
-export interface IFilter {
-    query: string
-    filter: '' | 'name' | 'nation'
-}
-
-export type TPatientsInitialState = {
-    search: string
-    filters: IFilter[]
-} & PatientsAPI.IPatientRootObject
+import { TUserConfigs } from '@store/constants/configsTypes'
+import { TPatientsInitialState } from '@store/constants/patientsTypes'
 
 const mockedPatients: TPatientsInitialState = {
     search: 'madonna',
@@ -40,58 +30,6 @@ const mockedPatients: TPatientsInitialState = {
     },
 }
 
-const patientsReducer = (
-    state: TPatientsInitialState = mockedPatients,
-    action?: TPatientsActionsCreators,
-): TPatientsInitialState => {
-    if (action)
-        switch (action.type) {
-            case PatientsDataActions.REMOVE_SEARCH_FILTER:
-                return {
-                    ...state,
-                    filters: [...state.filters.slice(0, action.payload), ...state.filters.slice(action.payload + 1)],
-                }
-            case PatientsDataActions.INITIAL_LIST_PATIENTS:
-                return {
-                    ...state,
-                    results: [...state.results, ...action.payload.results],
-                    info: {
-                        seed: action.payload.info.seed,
-                        results: state.info.results + action.payload.info.results,
-                        page: action.payload.info.page,
-                        version: action.payload.info.version,
-                    },
-                }
-            case PatientsDataActions.PAGINATION_LOAD_PATIENTS:
-                return {
-                    ...state,
-                    results: [...state.results, ...action.payload.results],
-                    info: {
-                        ...state.info,
-                        results: state.info.results + action.payload.info.results,
-                    },
-                }
-            case PatientsDataActions.SEARCH_QUERY_SUBMIT:
-                return {
-                    ...state,
-                    search: action.payload.search,
-                    filters: [...action.payload.filters],
-                    results: [...action.payload.results],
-                    info: {
-                        results: action.payload.info.results,
-                        page: action.payload.info.page,
-                        seed: state.info.seed,
-                        version: state.info.version,
-                    },
-                }
-
-            default:
-                return state
-        }
-
-    return state
-}
-
 const mockedConfigs: TUserConfigs = {
     user: 'Hugo Leonardo',
     email: 'hugoleonardo.dev@gmail.com',
@@ -101,24 +39,12 @@ const mockedConfigs: TUserConfigs = {
     apiQuery: '',
 }
 
-const memoryHistory = createMemoryHistory({ initialEntries: ['/'] })
-
-const configsReducer = (state: TUserConfigs = mockedConfigs, action?: TConfigsActionsCreators): TUserConfigs => {
-    if (action)
-        switch (action.type) {
-            case ConfigsDataActions.SWITCH_THEME:
-                return { ...state, isDarkTheme: action.payload }
-            case ConfigsDataActions.SET_IS_LOADING:
-                return { ...state, isLoading: action.payload }
-            case ConfigsDataActions.UPDATE_API_QUERY:
-                return { ...state, apiQuery: action.payload }
-            default:
-                return state
-        }
-    return state
+const initialStates: IMockedInitialStates = {
+    configs: mockedConfigs,
+    patients: mockedPatients,
 }
 
-const initialStates = [mockedPatients, mockedConfigs]
+const memoryHistory = createMemoryHistory({ initialEntries: ['/'] })
 
 const userResponse = rest.get('https://randomuser.me/api/', (_request, response, context) => {
     return response(context.json(firstTenPatients))
@@ -144,12 +70,7 @@ afterAll(() => server.close())
 
 describe('Renders HomePage to test NotFound behavior', () => {
     it('should render a text when a patient is not found', async () => {
-        renderWithRouterAndStore(
-            <HomePage />,
-            { path: '/', history: memoryHistory },
-            { customConfigsReducer: configsReducer, customPatientsReducer: patientsReducer },
-            initialStates,
-        )
+        renderWithRouterAndStore(<HomePage />, { path: '/', history: memoryHistory }, getMockedStore(initialStates))
 
         const patientNotFound = screen.getByText('Patient not found.')
         expect(patientNotFound).toBeInTheDocument()
@@ -160,8 +81,7 @@ describe('Renders HomePage to test NotFound behavior', () => {
         renderWithRouterAndStore(
             <NotFound />,
             { path: '/any-page', history: anyPageMemoryHistory },
-            { customConfigsReducer: configsReducer, customPatientsReducer: patientsReducer },
-            initialStates,
+            getMockedStore(initialStates),
         )
 
         const notFoundImage = await screen.findByRole('img')

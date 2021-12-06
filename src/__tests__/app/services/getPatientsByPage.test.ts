@@ -30,7 +30,8 @@ afterAll(() => server.close())
 
 describe('getPatientsByPage response', () => {
     it('should return a list of patients', async () => {
-        const patientsList = await getPatientsByPage(2)
+        const PAGE_NUMBER_TWO = 2
+        const patientsList = await getPatientsByPage(PAGE_NUMBER_TWO)
         expect(patientsList.data).toBeTruthy()
     })
 })

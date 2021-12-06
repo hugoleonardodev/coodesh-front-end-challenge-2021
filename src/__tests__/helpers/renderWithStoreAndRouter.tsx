@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import React from 'react'
-import { Provider, RootStateOrAny } from 'react-redux'
+import { Provider } from 'react-redux'
 import { Route } from 'react-router'
 
 import { ConnectedRouter } from 'connected-react-router'
@@ -25,34 +25,30 @@ interface ICustomRouteConfig {
 const defaultHistory = createMemoryHistory()
 const defaultRouteConfig = { path: '/', history: defaultHistory }
 
-type TInitialStates = {
-    configs?: TUserConfigs
-    patients?: TPatientsInitialState
+export interface IMockedInitialStates {
+    configs: TUserConfigs
+    patients: TPatientsInitialState
 }
 
 type TCustomReducers = {
-    customConfigsReducer: (state?: TUserConfigs, action?: TConfigsActionsCreators | undefined) => TUserConfigs
-    customPatientsReducer: (
-        state?: TPatientsInitialState,
-        action?: TPatientsActionsCreators | undefined,
-    ) => TPatientsInitialState
+    configs: (state?: TUserConfigs, action?: TConfigsActionsCreators | undefined) => TUserConfigs
+    patients: (state?: TPatientsInitialState, action?: TPatientsActionsCreators | undefined) => TPatientsInitialState
 }
-export const getMockedStore = (initialState: TInitialStates, customReducers?: TCustomReducers): Store => {
-    if (!initialState || !customReducers) {
+export const hasMockedStore = (customReducers?: TCustomReducers): Store => {
+    if (!customReducers) {
         return store
     }
 
-    return customStore(defaultHistory, customReducers.customConfigsReducer, customReducers.customPatientsReducer)
+    return customStore(defaultHistory, customReducers.configs, customReducers.patients)
 }
 
 export const renderWithRouterAndStore = (
     component: React.ReactElement,
     routeConfigs: ICustomRouteConfig = defaultRouteConfig,
     customReducers?: TCustomReducers,
-    initialState?: RootStateOrAny,
 ): Record<string, unknown> => {
     const route = routeConfigs.path || '/'
-    const store = getMockedStore(initialState, customReducers)
+    const store = hasMockedStore(customReducers)
     const history = routeConfigs.history || createMemoryHistory({ initialEntries: [route] })
 
     return {

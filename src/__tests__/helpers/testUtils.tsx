@@ -23,6 +23,7 @@ app.interceptors.response.use(
 )
 
 export default app
+
 const AllTheProviders: FC = ({ children }) => {
     return (
         <Provider store={store}>

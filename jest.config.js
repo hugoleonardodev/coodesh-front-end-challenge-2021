@@ -85,6 +85,7 @@ module.exports = {
         'index.tsx',
         'index.ts',
         '_rootReducerTypes.ts',
+        'getMockedStore.ts'
     ],
 
     // Indicates which provider should be used to instrument code for coverage

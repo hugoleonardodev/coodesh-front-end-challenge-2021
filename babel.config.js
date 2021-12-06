@@ -39,7 +39,6 @@ module.exports = {
                 root: ['.'],
                 extensions: ['.js', '.jsx', '.ts', '.tsx'],
                 alias: {
-                    '^__tests__/(.+)': './src/__tests__/\\1',
                     '^@common/(.+)': './src/common/\\1',
                     '^@common/assets/(.+)': './src/common/assets/\\1',
                     '^@common/functions/(.+)': './src/common/functions/\\1',

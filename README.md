@@ -189,7 +189,7 @@ npm run publish:dev
 
 ---
 
-## 📡 To Do
+## ✅ To Do
 
 - [ ] Reduce bundle size
 - [ ] Search Optimization Engine

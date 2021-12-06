@@ -737,7 +737,5 @@ describe('Renders HomePage to test SearchFilter behavior', () => {
 
         const searchButton = screen.getByTestId('search-button')
         expect(searchButton).toBeInTheDocument()
-
-        // userEvent.click(searchButton)
     })
 })

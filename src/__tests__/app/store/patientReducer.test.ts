@@ -65,7 +65,7 @@ describe('Patients Reducer', () => {
             info: {
                 seed: '',
                 results: 50,
-                page: 0,
+                page: 1,
                 version: '',
             },
         })

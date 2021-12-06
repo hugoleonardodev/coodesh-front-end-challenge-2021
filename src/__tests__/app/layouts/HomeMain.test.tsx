@@ -693,7 +693,7 @@ const server = setupServer(
     rest.get('http://localhost:5010/true&page=1', async (_request, response, context) => {
         return response(context.json(firstTenPatients))
     }),
-    rest.get('http://localhost:5010/true&nat=nation&page=1', async (_request, response, context) => {
+    rest.get('http://localhost:5010/true&nat=br&page=1', async (_request, response, context) => {
         return response(context.json(firstTenPatients))
     }),
 )

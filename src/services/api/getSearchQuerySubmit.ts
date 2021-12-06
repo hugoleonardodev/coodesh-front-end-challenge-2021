@@ -26,7 +26,6 @@ const getSearchQuerySumit = async (
 
     const url = `${__API_BASE_URL__}${allFilters}&page=${page}`
 
-    console.log(url)
     const result = await axios({
         url,
         method: 'GET',

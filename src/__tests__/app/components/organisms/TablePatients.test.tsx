@@ -684,7 +684,7 @@ const userResponse = rest.get('https://randomuser.me/api/', (_request, response,
 
 const server = setupServer(
     userResponse,
-    rest.get('http://localhost:5010/true&page=1', async (_request, response, context) => {
+    rest.get('http://localhost:5010/true&page=1&gender=female', async (_request, response, context) => {
         return response(context.json(firstTenPatients))
     }),
     // ...handlers,

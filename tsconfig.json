@@ -39,10 +39,11 @@
       "__tests__/*": ["./src/__tests__/*"],
       "@common/*": ["./src/common/*"],
       "@common/assets/*": ["./src/common/assets/*"],
-      "@common/bootstrap/*": ["./src/common/bootstrap/*"],
+      "@common/functions/*": ["./src/common/functions/*"],
       "@common/hooks/*": ["./src/common/hooks/*"],
+      "@common/json/*": ["./src/common/json/*"],
+      "@common/themes/*": ["src/common/themes/*"],
       "@common/types/*": ["src/common/types/*"],
-      "@common/validators/*": ["src/common/validators/*"],
       "@components/*": ["./src/components/*"],
       "@components/atoms/*": ["./src/components/atoms/*"],
       "@components/molecules/*": ["./src/components/molecules/*"],
@@ -138,5 +139,5 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Recommended",
   "include": ["src/**/*", "src/__tests_/utils/jest-setup.ts", "src/__tests_/utils/test-utils.tsx"],
-  "exclude": ["node_modules", "dist", "build",  "**/*.test.ts","**/*.spec.ts", "cypress"]
+  "exclude": ["node_modules", "dist", "build",  "cypress"]
 }

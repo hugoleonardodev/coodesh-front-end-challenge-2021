@@ -170,7 +170,7 @@ npm run publish:dev
 
 ## 🔧 Troubleshooting
 
--   On deployment change root folder to `/dist`
+-   On deployment change base directory to `/dist`
 
 ---
 

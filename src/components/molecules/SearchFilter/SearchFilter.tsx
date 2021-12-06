@@ -85,6 +85,7 @@ const SearchFilter: React.FC = () => {
             <SubmitSearchButton
                 type="submit"
                 disabled={filters.length === __MAX_FILTERS_LENGTH__}
+                aria-label="search-button"
                 data-testid="search-button"
                 id="search-button"
             >

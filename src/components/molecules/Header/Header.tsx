@@ -11,6 +11,7 @@ import {
 } from 'reactstrap'
 
 import { ReactComponent as LogoIcon } from '@common/assets/logo.svg'
+import DevImage from '@common/assets/developer.png'
 import Avatar from '@components/atoms/Avatar'
 import { IRootStateWithReducers } from '@store/constants/_rootReducerTypes'
 
@@ -23,7 +24,7 @@ const Header: React.FC = () => {
         setShouldToggle(!shouldToggle)
     }, [shouldToggle])
 
-    const { user, avatar } = useSelector((state: IRootStateWithReducers) => state.configs)
+    const { user } = useSelector((state: IRootStateWithReducers) => state.configs)
 
     return (
         <HeaderNavBar color="light" expand="md" fixed="top" light>
@@ -35,7 +36,7 @@ const Header: React.FC = () => {
                 <Nav className="me-auto" navbar>
                     <UncontrolledDropdown inNavbar nav>
                         <DropdownToggle caret nav>
-                            <Avatar avatarUrl={avatar} avatarSize="thumbnail" />
+                            <Avatar avatarUrl={DevImage} avatarSize="thumbnail" />
                             {'  '}
                             {user}
                         </DropdownToggle>

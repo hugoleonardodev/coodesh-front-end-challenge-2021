@@ -28,10 +28,9 @@ module.exports = {
         ],
     ],
     plugins: [
-        // process.env.BABEL_ENV === 'production' ? '@babel/plugin-transform-react-constant-elements' : null, // only for production
-        // process.env.BABEL_ENV === 'production' ? '@babel/plugin-transform-react-inline-elements' : null, // only for production
+        '@babel/plugin-transform-react-constant-elements',
+        '@babel/plugin-transform-react-inline-elements',
         '@babel/plugin-transform-runtime',
-        'babel-plugin-istanbul',
         'syntax-async-functions',
         'transform-react-remove-prop-types',
         [

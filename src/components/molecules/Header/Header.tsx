@@ -40,19 +40,17 @@ const Header: React.FC = () => {
                             {user}
                         </DropdownToggle>
                         <DropdownMenu end>
-                            <DropdownItem>
-                                <DropdownLink
-                                    href="https://github.com/hugoleonardodev/coodesh-front-end-challenge-2021/tree/hugo-leonardo-codesh-front-end-challenge-2021-react"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    About
-                                </DropdownLink>
-                            </DropdownItem>
+                            <DropdownLink
+                                href="https://github.com/hugoleonardodev/coodesh-front-end-challenge-2021/tree/hugo-leonardo-codesh-front-end-challenge-2021-react"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <DropdownItem>About</DropdownItem>
+                            </DropdownLink>
                             <DropdownItem divider />
-                            <DropdownItem>
-                                <DropdownLink href="/">Reset</DropdownLink>
-                            </DropdownItem>
+                            <DropdownLink href="/">
+                                <DropdownItem>Reset</DropdownItem>
+                            </DropdownLink>
                         </DropdownMenu>
                     </UncontrolledDropdown>
                 </Nav>

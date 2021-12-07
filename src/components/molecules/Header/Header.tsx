@@ -14,7 +14,7 @@ import { ReactComponent as LogoIcon } from '@common/assets/logo.svg'
 import Avatar from '@components/atoms/Avatar'
 import { IRootStateWithReducers } from '@store/constants/_rootReducerTypes'
 
-import { HeaderNavBar, HeaderNavCollapse } from './Header.styles'
+import { DropdownLink, HeaderNavBar, HeaderNavCollapse } from './Header.styles'
 
 const Header: React.FC = () => {
     const [shouldToggle, setShouldToggle] = React.useState(false)
@@ -40,9 +40,19 @@ const Header: React.FC = () => {
                             {user}
                         </DropdownToggle>
                         <DropdownMenu end>
-                            <DropdownItem>About</DropdownItem>
+                            <DropdownItem>
+                                <DropdownLink
+                                    href="https://github.com/hugoleonardodev/coodesh-front-end-challenge-2021/tree/hugo-leonardo-codesh-front-end-challenge-2021-react"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    About
+                                </DropdownLink>
+                            </DropdownItem>
                             <DropdownItem divider />
-                            <DropdownItem>Reset</DropdownItem>
+                            <DropdownItem>
+                                <DropdownLink href="/">Reset</DropdownLink>
+                            </DropdownItem>
                         </DropdownMenu>
                     </UncontrolledDropdown>
                 </Nav>

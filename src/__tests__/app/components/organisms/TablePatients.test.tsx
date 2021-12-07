@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { createMemoryHistory } from 'history'
-import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 
 import { screen, cleanup } from '@testing-library/react'
@@ -9,6 +8,7 @@ import userEvent from '@testing-library/user-event'
 
 import { IMockedInitialStates, renderWithRouterAndStore } from '__tests__/helpers/renderWithStoreAndRouter'
 import firstTenPatients from '__tests__/mocks/json/firstTenPatients'
+import handlers from '__tests__/mocks/msw/handlers'
 import getMockedStore from '__tests__/mocks/store/getMockedStore'
 
 import HomePage from '@pages/HomePage'
@@ -35,17 +35,7 @@ const initialStates: IMockedInitialStates = {
     patients: mockedPatients,
 }
 
-const userResponse = rest.get('https://randomuser.me/api/', (_request, response, context) => {
-    return response(context.json(firstTenPatients))
-})
-
-const server = setupServer(
-    userResponse,
-    rest.get('http://localhost:5010/true&page=1&gender=female', async (_request, response, context) => {
-        return response(context.json(firstTenPatients))
-    }),
-    // ...handlers,
-)
+const server = setupServer(...handlers)
 
 beforeAll(() => server.listen())
 

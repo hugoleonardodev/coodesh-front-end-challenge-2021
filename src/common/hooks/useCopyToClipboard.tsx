@@ -2,7 +2,11 @@ import { useState } from 'react'
 
 type TCopiedValue = string | null
 type TCopyFunction = (text: string) => Promise<boolean> // Return success
-
+/**
+ * This React hook provides a copy method to save a string in the clipboard and the copied value (default: null).
+ * If anything doesn't work, it prints a warning in the console and the value will be null.
+ * @see https://usehooks-ts.com/react-hook/use-copy-to-clipboard
+ */
 function useCopyToClipboard(): [TCopiedValue, TCopyFunction] {
     const [copiedText, setCopiedText] = useState<TCopiedValue>(null)
 

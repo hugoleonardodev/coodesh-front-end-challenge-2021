@@ -1,3 +1,5 @@
+// should be a json, but msw response does convert files to json...
+
 export default {
     "results": [
       {

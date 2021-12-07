@@ -40,6 +40,7 @@ afterEach(() => {
     jest.clearAllMocks()
     cleanup()
 })
+
 describe('SharedPatientPage.tsx', () => {
     it('should render', async () => {
         renderWithRouterAndStore(

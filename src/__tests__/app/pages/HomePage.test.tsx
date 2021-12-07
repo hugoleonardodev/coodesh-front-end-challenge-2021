@@ -1,42 +1,27 @@
 import React from 'react'
 
 import { createMemoryHistory } from 'history'
-import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 
 import { screen, cleanup } from '@testing-library/react'
 
-import firstTenPatients from '__tests__/mocks/json/firstTenPatients'
+import handlers from '__tests__/mocks/msw/handlers'
 
 import HomePage from '@pages/HomePage'
 
 import { renderWithRouterAndStore } from '../../helpers/renderWithStoreAndRouter'
 
-const userResponse = rest.get('https://randomuser.me/api/', (_request, response, context) => {
-    return response(context.json(firstTenPatients))
-})
+const server = setupServer(...handlers)
 
-// declare which API requests to mock
-const server = setupServer(
-    userResponse,
-    rest.get('http://localhost:5010/true', async (_request, response, context) => {
-        return response(context.json(firstTenPatients))
-    }),
-    // ...handlers,
-)
-
-// // setupServer
-// establish API mocking before all tests
 beforeAll(() => server.listen())
-// reset any request handlers that are declared as a part of our tests
-// (i.e. for testing one-time error scenarios)
+
 afterEach(() => {
     server.resetHandlers()
     jest.resetModules()
     jest.clearAllMocks()
     cleanup()
 })
-// clean up once the tests are done
+
 afterAll(() => server.close())
 
 const memoryHistory = createMemoryHistory({ initialEntries: ['/'] })

@@ -28,6 +28,32 @@ export const initialListPatients = (patientsData: PatientsAPI.IPatientRootObject
 })
 
 /**
+ * An action to append more 50 patients from the random user API.
+ * @param patientsData
+ * @endpoint https://randomuser.me/api/?seed=pharma&page=2&results=50
+ * @returns returns an async `redux-thunk` function able to await for data and `dispatch` the result
+ * @see https://randomuser.me/documentation
+ */
+export const paginationLoadPatients = (
+    patientsData: PatientsAPI.IPatientRootObject,
+): IPaginationLoadPatientsAction => ({
+    type: PatientsDataActions.PAGINATION_LOAD_PATIENTS,
+    payload: patientsData,
+})
+
+/**
+ * An action to append more 50 patients from the random user API.
+ * @param patientsData
+ * @endpoint https://randomuser.me/api/?seed=pharma&page=2&results=50
+ * @returns returns an async `redux-thunk` function able to await for data and `dispatch` the result
+ * @see https://randomuser.me/documentation
+ */
+export const searchQuerySubmit = (patientsData: TPatientsInitialState): ISearchQuerySubmitAction => ({
+    type: PatientsDataActions.SEARCH_QUERY_SUBMIT,
+    payload: patientsData,
+})
+
+/**
  * Async thunk to get the first page of patients from random user API.
  * @param none
  * @returns `<Promise>` an async `redux-thunk` function able to await for data and `dispatch` the result
@@ -56,32 +82,6 @@ export const getInitialPatientsListThunk =
 
         dispatch(setIsLoading(false))
     }
-
-/**
- * An action to append more 50 patients from the random user API.
- * @param patientsData
- * @endpoint https://randomuser.me/api/?seed=pharma&page=2&results=50
- * @returns returns an async `redux-thunk` function able to await for data and `dispatch` the result
- * @see https://randomuser.me/documentation
- */
-export const paginationLoadPatients = (
-    patientsData: PatientsAPI.IPatientRootObject,
-): IPaginationLoadPatientsAction => ({
-    type: PatientsDataActions.PAGINATION_LOAD_PATIENTS,
-    payload: patientsData,
-})
-
-/**
- * An action to append more 50 patients from the random user API.
- * @param patientsData
- * @endpoint https://randomuser.me/api/?seed=pharma&page=2&results=50
- * @returns returns an async `redux-thunk` function able to await for data and `dispatch` the result
- * @see https://randomuser.me/documentation
- */
-export const searchQuerySubmit = (patientsData: TPatientsInitialState): ISearchQuerySubmitAction => ({
-    type: PatientsDataActions.SEARCH_QUERY_SUBMIT,
-    payload: patientsData,
-})
 
 /**
  * Async thunk to get a page of patients from random user API given the page number.
@@ -121,18 +121,6 @@ export const getPatientsByPageThunk =
 
         dispatch(setIsLoading(false))
     }
-
-// /**
-//  * An action to append more 50 patients from the random user API.
-//  * @param patientsData
-//  * @endpoint https://randomuser.me/api/?seed=pharma&page=2&results=50
-//  * @returns returns an async `redux-thunk` function able to await for data and `dispatch` the result
-//  * @see https://randomuser.me/documentation
-//  */
-// export const searchQuerySubmit = (patientsData: TPatientsInitialState): ISearchQuerySubmitAction => ({
-//     type: PatientsDataActions.SEARCH_QUERY_SUBMIT,
-//     payload: patientsData,
-// })
 
 /**
  * Async thunk to handle most of the async requests and `actions` on patients `redux` store's.

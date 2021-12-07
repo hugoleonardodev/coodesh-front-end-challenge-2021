@@ -177,7 +177,7 @@ npm run publish:dev
 ---
 
 ## 📽 Presentation Video
--   Presentation video: [Link](Link)
+-   Presentation video: [Link](https://www.loom.com/share/393e18e6b185435db27f44a85204a49c)
 
 ---
 

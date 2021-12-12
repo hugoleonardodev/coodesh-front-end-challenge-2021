@@ -39,9 +39,11 @@
       "__tests__/*": ["./src/__tests__/*"],
       "@common/*": ["./src/common/*"],
       "@common/assets/*": ["./src/common/assets/*"],
+      "@common/functions/*": ["./src/common/functions/*"],
       "@common/hooks/*": ["./src/common/hooks/*"],
+      "@common/json/*": ["./src/common/json/*"],
+      "@common/themes/*": ["src/common/themes/*"],
       "@common/types/*": ["src/common/types/*"],
-      "@common/validators/*": ["src/common/validators/*"],
       "@components/*": ["./src/components/*"],
       "@components/atoms/*": ["./src/components/atoms/*"],
       "@components/molecules/*": ["./src/components/molecules/*"],
@@ -52,21 +54,22 @@
       "@services/*": ["src/services/*"],
       "@services/api": ["src/services/api/index.ts"],
       "@services/api/*": ["src/services/api/*"],
-      "@services/auth": ["src/services/auth/index.ts"],
-      "@services/auth/*": ["src/services/auth/*"],
+      "@services/helpers/*": ["src/services/helpers/*"],
       "@store/*": ["./src/store/*"],
       "@store/index": ["./src/store/index.ts"],
       "@store/actions/*": ["./src/store/actions/*"],
       "@store/constants/*": ["./src/store/constants/*"],
+      "@store/helpers/*": ["./src/store/helpers/*"],
       "@store/reducers/*": ["./src/store/reducers/*"],
-      "@store/types/*": ["./src/store/types/*"]
+      "@store/types/*": ["./src/store/types/*"],
+      "@types/*": ["./src/types/*"]
     },                                                   /* Specify a set of entries that re-map imports to additional lookup locations. */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     "typeRoots": [
       "src/common/types",
       "./node_modules/@types"
     ],                                                   /* Specify multiple folders that act like `./node_modules/@types`. */
-    // "types": [],                                      /* Specify type package names to be included without being referenced in a source file. */
+    // "types": ["jest"],                                   /* Specify type package names to be included without being referenced in a source file. */
     // "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
     "resolveJsonModule": true,                           /* Enable importing .json files */
     // "noResolve": true,                                /* Disallow `import`s, `require`s or `<reference>`s from expanding the number of files TypeScript should add to a project. */
@@ -134,6 +137,6 @@
   },
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Recommended",
-  "include": ["src/**/*", "src/__tests_/utils/jest-setup.ts", "src/__tests_/utils/test-utils.tsx"],
-  "exclude": ["node_modules", "dist", "build", "**/*.spec.ts"]
+  "include": ["src/**/*", "src/__tests_/**/*", "src/__tests_/utils/test-utils.tsx"],
+  "exclude": ["node_modules", "dist", "build", "cypress"]
 }

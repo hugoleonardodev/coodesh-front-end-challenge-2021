@@ -1,14 +1,20 @@
 import React from 'react'
 
-// import { screen } from '@testing-library/react'
+import { cleanup, screen } from '@testing-library/react'
+
 import App from '../../App'
-import { render } from '../helpers/TestRenderer'
+import { render } from '../helpers/testUtils'
+
+afterEach(() => {
+    jest.resetModules()
+    jest.clearAllMocks()
+    cleanup()
+})
 
 describe('App.tsx', () => {
-    it('should breaks because mdc is only defined at browser by import the modules from CDN', () => {
-        // In order to make it renders, just provide a mock for mdc CDN JavaScript files.
-        // But, since we are not able to test styles, we will test classNames to match the mdc
-        // Cypress will provide a test on browser environment with the mdc module
+    it('should render', async () => {
         render(<App />, {})
+        const loading = screen.getByText('Loading...')
+        expect(loading).toBeInTheDocument()
     })
 })

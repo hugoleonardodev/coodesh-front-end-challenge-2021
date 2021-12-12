@@ -1,20 +1,45 @@
-// Test renderer with Router and Store (Redux) for easy customizing tests entries
-import { RenderWithRouterAndStore } from '__tests__/helpers/RenderWithStoreAndRouter'
-// import { render } from '../../helpers/TestRenderer'
-// import userEvent from '@testing-library/user-event'
-import { createMemoryHistory } from 'history'
 import React from 'react'
 
-import HomePage from '@pages/HomePage'
-import { screen } from '@testing-library/react'
+import { createMemoryHistory } from 'history'
+import { setupServer } from 'msw/node'
 
-describe('HomePageNoMDC.tsx', () => {
-    it('should renders a link with `React` text', () => {
-        const homeRoute = '/'
-        const homeHistory = createMemoryHistory({ initialEntries: [homeRoute] })
-        RenderWithRouterAndStore(<HomePage />, { path: homeRoute, history: homeHistory })
-        // test case passes because we have commented out the mdc modules from HomePage
-        const link = screen.getByText('React')
-        expect(link).toBeInTheDocument()
+import { screen, cleanup } from '@testing-library/react'
+
+import handlers from '__tests__/mocks/msw/handlers'
+
+import HomePage from '@pages/HomePage'
+
+import { renderWithRouterAndStore } from '../../helpers/renderWithStoreAndRouter'
+
+const server = setupServer(...handlers)
+
+beforeAll(() => server.listen())
+
+afterEach(() => {
+    server.resetHandlers()
+    jest.resetModules()
+    jest.clearAllMocks()
+    cleanup()
+})
+
+afterAll(() => server.close())
+
+const memoryHistory = createMemoryHistory({ initialEntries: ['/'] })
+
+describe('Unit Test for HomePage.tsx', () => {
+    it('should renders with a logo', () => {
+        renderWithRouterAndStore(<HomePage />, { path: '/', history: memoryHistory })
+        const titles = screen.getAllByText('Pharma Inc.')
+        expect(titles[0]).toBeInTheDocument()
+    })
+
+    it('should fetch data', async () => {
+        renderWithRouterAndStore(<HomePage />)
+
+        const loadings = screen.getAllByTestId('loading')
+        expect(loadings[0]).toBeInTheDocument()
+
+        const userName = await screen.findByText('Hugo Leonardo')
+        expect(userName).toBeInTheDocument()
     })
 })

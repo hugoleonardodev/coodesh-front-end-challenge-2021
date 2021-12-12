@@ -2,11 +2,13 @@ import { connectRouter } from 'connected-react-router'
 import { History } from 'history'
 import { combineReducers, Reducer } from 'redux'
 
-import quotesDataReducer from './quotesDataReducer'
+import configsReducer from './configsReducer'
+import patientsReducer from './patientsReducer'
 
 const rootReducer = (history: History<unknown>): Reducer =>
     combineReducers({
-        quotes: quotesDataReducer,
+        configs: configsReducer,
+        patients: patientsReducer,
         router: connectRouter(history),
     })
 

@@ -3,13 +3,17 @@
 module.exports = {
     // preset: 'ts-jest',
     preset: 'ts-jest/presets/js-with-babel', // TypeScript files will be handled by ts-jest, and JavaScript files will be handled by babel-jest. See https://huafu.github.io/ts-jest/user/config/#the-3-presets.
-    testEnvironment: 'node',
+    testEnvironment: 'jest-environment-jsdom',
     moduleNameMapper: {
         // Files Mocks see: https://jestjs.io/docs/webpack
-        '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-            '<rootDir>/__tests__/mocks/fileMock.ts',
+        '\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+            '<rootDir>/__tests__/mocks/fileMock.js',
+
         // Styles Mocks see: https://jestjs.io/docs/webpack
-        '\\.(css|scss)$': '<rootDir>/__tests__/mocks/styleMock.ts',
+        '\\.(css|scss)$': '<rootDir>/__tests__/mocks/styleMock.js',
+
+        // Svgr componets Mocks
+        "\\.svg": "<rootDir>/__tests__/mocks/svgrMock.js",
 
         // Custom Paths
         '^__tests__/(.+)': ['<rootDir>/__tests__/$1'],
@@ -28,12 +32,15 @@ module.exports = {
         '^@public/(.*)$': ['<rootDir>/public/$1'],
         '^@services/api': ['<rootDir>/services/api/index.ts'],
         '^@services/api/(.*)$': ['<rootDir>/services/api/$1'],
-        '^@services/auth/(.*)$': ['<rootDir>/services/auth/$1'],
-        '^@services/auth/(.*)$': ['<rootDir>/services/auth/$1'],
+        '^@services/helpers/(.*)$': ['<rootDir>/services/helpers/$1'],
         '^@store/(.*)$': ['<rootDir>/store/$1'],
         '^@store/index': ['<rootDir>/store/index.ts'],
         '^@store/api/(.*)$': ['<rootDir>/store/api/$1'],
         '^@store/auth/(.*)$': ['<rootDir>/store/auth/$1'],
+    },
+    transform: {
+        "^.+\\.svg$": "<rootDir>/__tests__/mocks/fileTransformer.js"
+        // '^.+\\.svg$': 'jest-svg-transformer',
     },
     // All imported modules in your tests should be mocked automatically
     // automock: false,
@@ -77,6 +84,8 @@ module.exports = {
         '/coverage/',
         'index.tsx',
         'index.ts',
+        '_rootReducerTypes.ts',
+        'getMockedStore.ts'
     ],
 
     // Indicates which provider should be used to instrument code for coverage
@@ -93,10 +102,10 @@ module.exports = {
     // An object that configures minimum threshold enforcement for coverage results
     coverageThreshold: {
         global: {
-            branches: 50,
-            functions: 50,
-            lines: 50,
-            statements: 50,
+            branches: 90,
+            functions: 90,
+            lines: 90,
+            statements: 90,
         },
     },
 
@@ -123,9 +132,19 @@ module.exports = {
         __IS_PRODUCTION__: true,
         __APP_NAME__: true,
         __API_URL__: true,
-        // 'ts-jest': {
-        //     useESM: true,
-        // },
+        __APP_BASE_URL__: true,
+        __API_BASE_URL__: true,
+        __MAX_FILTERS_LENGTH__: true,
+        __MIN_PAGE_COUNT_TO_SKIP__: true,
+        __MIN_PAGE_COUNT_TO_PREVIOUS__: true,
+        __MAX_NEXT_PAGES_COUNT__:  true,
+        __ONE_SECOND__: true,
+        __200_OK__: true,
+        __400_BAD_REQUEST__: true,
+        __404_NOT_FOUND__: true,
+        'ts-jest': {
+            useESM: true,
+        },
     },
 
     // The maximum amount of workers used to run your tests. Can be specified as % or a number. E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number. maxWorkers: 2 will use a maximum of 2 workers.
@@ -137,7 +156,7 @@ module.exports = {
     // ],
 
     // An array of file extensions your modules use
-    // moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],
+    moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],
 
     // moduleNameMapper: {
     //     '^(\\.{1,2}/.*)\\.js$': '$1',
@@ -198,7 +217,7 @@ module.exports = {
     // snapshotSerializers: [],
 
     // The test environment that will be used for testing
-    testEnvironment: 'jsdom',
+    // testEnvironment: 'jsdom',
 
     // Options that will be passed to the testEnvironment
     // testEnvironmentOptions: {},

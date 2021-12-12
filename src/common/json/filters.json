@@ -1,0 +1,4 @@
+[
+    {"query": "brazil", "filter": "nation"},
+    {"query": "lima", "filter": "name"}
+]

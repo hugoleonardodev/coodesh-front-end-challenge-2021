@@ -1,3 +1,5 @@
-import useWindowSize from './useWindowSize'
+export { default as useIntersectionObserver } from './useIntersectionObserver'
 
-export { useWindowSize }
+export { default as useWindowSize } from './useWindowSize'
+
+export { default as useCopyToClipboard } from './useCopyToClipboard'

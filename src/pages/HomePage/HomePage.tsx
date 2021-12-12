@@ -1,21 +1,20 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { promiseThunkAction } from '@store/actions/quotesActions'
+import HomeMain from '@layouts/HomeMain'
+import { getInitialPatientsListThunk } from '@store/actions/patientsActions'
+import { IRootStateWithReducers } from '@store/constants/_rootReducerTypes'
 
 const HomePage: React.FC = () => {
     const dispatch = useDispatch()
 
-    React.useEffect(() => {
-        dispatch(promiseThunkAction())
-    }, [dispatch])
+    const { results, search, filters } = useSelector((state: IRootStateWithReducers) => state.patients)
 
-    return (
-        <div>
-            <h1>Docker App</h1>
-            <h2>Home Page !!</h2>
-        </div>
-    )
+    React.useEffect(() => {
+        if (results.length === 0 && (search === '' || filters.length === 0)) dispatch(getInitialPatientsListThunk())
+    }, [dispatch, filters.length, results.length, search])
+
+    return <HomeMain />
 }
 
 export default HomePage
